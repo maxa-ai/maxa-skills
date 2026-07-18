@@ -2,43 +2,13 @@
 
 ## Project Overview
 
-Public Claude Code plugin marketplace for the Maxa organization. Each plugin lives under `plugins/<plugin-name>/` with its own `.claude-plugin/plugin.json` and skills. The marketplace manifest at `.claude-plugin/marketplace.json` registers all available plugins.
+Public Claude Code plugin marketplace for the Maxa organization. See [README.md](README.md) for repository structure, installation, testing, evaluations, and contributing guidelines.
 
 ### Plugin naming convention
 
-`maxa-` prefix + domain noun, one plugin per product line. Plugin names are stable identifiers — they appear in `/plugin install`, `enabledPlugins`, and `pluginConfigs`.
+`maxa-` prefix + domain noun, one plugin per product line. Plugin names are stable identifiers — they appear in `/plugin install`, `enabledPlugins`, and `pluginConfigs`. Different product lines get their own plugin entry, not a shared umbrella.
 
-Current family: `maxa-specs`, `maxa-pipelines`, `maxa-preflight`, `maxa-analyst`.
-
-### Repository structure
-
-```
-.claude-plugin/
-└── marketplace.json         # Marketplace manifest (registers all plugins)
-plugins/
-└── <plugin-name>/
-    ├── .claude-plugin/
-    │   └── plugin.json      # Plugin manifest (name, version, description)
-    └── skills/
-        └── <skill-name>/
-            └── SKILL.md     # Skill prompt and metadata
-```
-
-### Installation
-
-```bash
-# Add the marketplace (once per user)
-/plugin marketplace add maxa-ai/maxa-copilot-skills
-
-# Install a plugin
-/plugin install <plugin-name>@maxa-copilot-skills
-```
-
-### Testing locally
-
-```bash
-claude --plugin-dir ./plugins/<plugin-name>
-```
+Current: `maxa-specs`. Planned: `maxa-pipelines`, `maxa-preflight`, `maxa-analyst`.
 
 ## Git and Source Control
 

@@ -1,0 +1,82 @@
+{
+  "skill_name": "check-model",
+  "fixture_path": "tests/fixtures/sap-finance-bundle",
+  "evals": [
+    {
+      "id": 1,
+      "name": "audit-five-entities",
+      "prompt": "Check my dbt models against the business knowledge bundle. I've built staging models for FinancialTransaction, Customer, Product, ProfitCenter, and GLAccount.",
+      "expected_output": "A structured audit report with Summary, Missing Entities, Business Rules, Pre-Flight, Numerical Validation, Business Questions, and Risks sections",
+      "assertions": [
+        {
+          "text": "Discovers the bundle and reads index.md",
+          "type": "procedural"
+        },
+        {
+          "text": "Flags FiscalCalendar as a missing entity referenced by FinancialTransaction's fiscal_calendar_id FK",
+          "type": "correctness"
+        },
+        {
+          "text": "Identifies all 7+ distinct business rules across the 5 implemented entities",
+          "type": "completeness"
+        },
+        {
+          "text": "Deduplicates cross-entity rules (e.g., Hash # sentinel reported once with all affected entities, not repeated per entity)",
+          "type": "format"
+        },
+        {
+          "text": "Reads specialized-instructions.md pre-flight checklists for all 5 entities",
+          "type": "procedural"
+        },
+        {
+          "text": "References numerical-examples.md for count validation baselines (53 customers, 35 products, 37 profit centers, 21 GL accounts, 167,136 transactions)",
+          "type": "correctness"
+        },
+        {
+          "text": "Identifies Q018, Q019, Q020 as partially covered due to missing FiscalCalendar",
+          "type": "correctness"
+        },
+        {
+          "text": "Surfaces relevant known gaps (Gap 1: 37th profit center, Gap 9: P&L hierarchy completeness)",
+          "type": "completeness"
+        },
+        {
+          "text": "Report leads with Summary section, not details",
+          "type": "format"
+        },
+        {
+          "text": "Ranks blockers by impact — data-corrupting issues above cosmetic ones",
+          "type": "format"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "audit-single-entity",
+      "prompt": "I just built a staging model for FinancialTransaction. Check it against the bundle — did I handle everything?",
+      "expected_output": "A focused audit on FinancialTransaction covering its 7 business rules, 9 pre-flight items, and relevant numerical examples",
+      "assertions": [
+        {
+          "text": "Reads entities/financial-transaction.md for business rules",
+          "type": "procedural"
+        },
+        {
+          "text": "Checks all 7 business rules affecting FinancialTransaction",
+          "type": "completeness"
+        },
+        {
+          "text": "Runs all 9 pre-flight checklist items from specialized-instructions.md for FinancialTransaction",
+          "type": "completeness"
+        },
+        {
+          "text": "Flags the European comma decimal conversion as a high-impact data-corrupting risk",
+          "type": "correctness"
+        },
+        {
+          "text": "Flags missing FiscalCalendar as a structural gap (FK reference from FinancialTransaction)",
+          "type": "correctness"
+        }
+      ]
+    }
+  ]
+}

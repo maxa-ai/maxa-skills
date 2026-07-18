@@ -1,0 +1,8 @@
+{
+  "name": "maxa-specs",
+  "description": "Activate a Maxa Business Knowledge Bundle for data modeling, transform implementation, and business analysis — grounding your copilot in real business understanding extracted from stakeholder discovery.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Maxa"
+  }
+}
