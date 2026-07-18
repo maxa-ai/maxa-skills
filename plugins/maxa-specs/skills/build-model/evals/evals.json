@@ -1,0 +1,110 @@
+{
+  "skill_name": "build-model",
+  "fixture_path": "tests/fixtures/sap-finance-bundle",
+  "evals": [
+    {
+      "id": 1,
+      "name": "kimball-star-schema",
+      "prompt": "I need to build a Kimball star schema for VeloGroup's financial reporting. Create the staging and mart layer table definitions using dbt. The source database schema is documented in tests/fixtures/sap-finance-schema/schema.md.",
+      "expected_output": "A star schema with FinancialTransaction as the fact table and Customer, Product, ProfitCenter, GLAccount, FiscalCalendar as dimensions",
+      "assertions": [
+        {
+          "text": "Identifies FinancialTransaction as the fact table with 6-way composite grain (account x customer x product x profit center x version x date)",
+          "type": "correctness"
+        },
+        {
+          "text": "Identifies all 5 dimension entities (Customer, Product, ProfitCenter, GLAccount, FiscalCalendar)",
+          "type": "correctness"
+        },
+        {
+          "text": "Applies European comma decimal conversion for the VALUE column",
+          "type": "business_rule"
+        },
+        {
+          "text": "Casts posting_date from BIGINT YYYYMMDD to DATE type",
+          "type": "business_rule"
+        },
+        {
+          "text": "Preserves hash (#) sentinel values — does not filter them out",
+          "type": "business_rule"
+        },
+        {
+          "text": "Applies leaf-account-only filter for transaction queries",
+          "type": "business_rule"
+        },
+        {
+          "text": "Handles hierarchy-driven P&L arithmetic (revenue adds, costs subtract, signs not embedded in values)",
+          "type": "business_rule"
+        },
+        {
+          "text": "Includes version field filtering (Actual vs Budget)",
+          "type": "business_rule"
+        },
+        {
+          "text": "Flags that operating expenses have customer_id=# and product_id=# (profit center grain only)",
+          "type": "business_rule"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "single-entity-gross-margin",
+      "prompt": "Using the business knowledge bundle, write a dbt model that computes Gross Margin by product line. The source database schema is documented in tests/fixtures/sap-finance-schema/schema.md.",
+      "expected_output": "A SQL/dbt model that computes Net Revenue minus COGS using the hierarchy-driven arithmetic, grouped by product line via the ProfitCenter hierarchy",
+      "assertions": [
+        {
+          "text": "Reads specialized-instructions.md for the Gross Margin computation recipe",
+          "type": "procedural"
+        },
+        {
+          "text": "Uses FPA1/022 (Gross Revenue) and FPA1/023 (Sales Deductions) for Net Revenue",
+          "type": "correctness"
+        },
+        {
+          "text": "Uses FPA1/020 for COGS",
+          "type": "correctness"
+        },
+        {
+          "text": "Groups results by product line using a documented dimension attribute or hierarchy relationship, not ad-hoc string parsing of ID fields",
+          "type": "business_rule"
+        },
+        {
+          "text": "Filters on version (Actual vs Budget)",
+          "type": "business_rule"
+        },
+        {
+          "text": "Applies comma-to-period decimal conversion before aggregation",
+          "type": "business_rule"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "bundle-discovery-from-subdirectory",
+      "prompt": "I have a business knowledge bundle somewhere in this project. Help me build a staging model for the Customer entity.",
+      "expected_output": "Discovers the bundle, reads the Customer entity file, produces a staging model with correct attributes and data conventions",
+      "assertions": [
+        {
+          "text": "Locates the bundle without the user specifying the path",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads entities/customer.md for attribute definitions",
+          "type": "procedural"
+        },
+        {
+          "text": "Applies LANGUAGE='EN' filter for multilingual text tables",
+          "type": "business_rule"
+        },
+        {
+          "text": "Retains hash (#) in customer_type_id as a legitimate member",
+          "type": "business_rule"
+        },
+        {
+          "text": "Includes customer_type_id with valid values Z1, Z2, Z3, #",
+          "type": "correctness"
+        }
+      ]
+    }
+  ]
+}

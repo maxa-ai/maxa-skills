@@ -9,3 +9,6 @@
 .claude/settings.local.json
 .claude/todos/
 *.log
+
+# Eval workspaces (skill-creator iteration outputs)
+*-workspace/

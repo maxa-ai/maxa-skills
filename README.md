@@ -4,9 +4,9 @@ Public Claude Code plugin marketplace for the Maxa organization.
 
 ## Available Plugins
 
-| Plugin | Description |
-|--------|-------------|
-| *Coming soon* | |
+| Plugin | Skills | Description |
+|--------|--------|-------------|
+| `maxa-specs` | `build-model`, `check-model`, `analyze` | Activate a Maxa Business Knowledge Bundle for data modeling, transform implementation, and business analysis |
 
 ## Installation
 
@@ -23,7 +23,9 @@ Public Claude Code plugin marketplace for the Maxa organization.
 Once installed, invoke skills with the plugin namespace:
 
 ```
-/<plugin-name>:<skill-name>
+/maxa-specs:build-model    # Build data models and transforms from the bundle
+/maxa-specs:check-model    # Audit an existing model against bundle requirements
+/maxa-specs:analyze        # Produce business deliverables (risk register, gap analysis, etc.)
 ```
 
 ## Testing Locally
@@ -31,6 +33,22 @@ Once installed, invoke skills with the plugin namespace:
 ```bash
 claude --plugin-dir ./plugins/<plugin-name>
 ```
+
+## Evaluations
+
+Each skill includes `evals/evals.json` with test cases and assertions, compatible with Anthropic's [skill-creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) plugin. Test fixtures (bundles, schemas) are in `tests/fixtures/`.
+
+To run evaluations:
+
+```bash
+# Install skill-creator (once)
+/plugin install skill-creator@claude-plugins-official
+
+# Evaluate a specific skill
+/skill-creator:skill-creator evaluate my build-model skill
+```
+
+The eval runner spawns with-skill and without-skill agents for each test case, grades assertions, and produces an HTML viewer for side-by-side comparison. Eval workspaces (`*-workspace/`) are gitignored.
 
 ## Validation
 

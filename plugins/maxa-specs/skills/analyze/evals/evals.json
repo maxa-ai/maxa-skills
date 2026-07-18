@@ -1,0 +1,122 @@
+{
+  "skill_name": "analyze",
+  "fixture_path": "tests/fixtures/sap-finance-bundle",
+  "evals": [
+    {
+      "id": 1,
+      "name": "data-readiness-review",
+      "prompt": "Produce a data readiness review for VeloGroup's FPA project. I need to assess whether we have enough information to start building.",
+      "expected_output": "A CPA-lens data readiness review with Executive Summary, Data Sources Assessment, Entity Coverage, Data Quality Risks, Gaps & Blockers, and Recommendation sections",
+      "assertions": [
+        {
+          "text": "Discovers the bundle and reads index.md",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads expert-observations.md BEFORE theme or entity files",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads known-gaps.md and follow-up-questions.md (negative-inference layer)",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads themes/source-systems.md for SAP FI/BPC architecture details",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads entity files for data conventions (European decimals, BIGINT dates, VARCHAR amounts)",
+          "type": "procedural"
+        },
+        {
+          "text": "Adopts CPA lens — uses vocabulary like reconciliation, source of record, completeness assessment",
+          "type": "tone"
+        },
+        {
+          "text": "Follows the output skeleton: Executive Summary / Data Sources Assessment / Entity Coverage / Data Quality Risks / Gaps & Blockers / Recommendation",
+          "type": "format"
+        },
+        {
+          "text": "Separates confirmed facts from known gaps and needs-verification items",
+          "type": "correctness"
+        },
+        {
+          "text": "Cites bundle files as sources for claims",
+          "type": "grounding"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "risk-register",
+      "prompt": "Draft a risk register for this project based on the business knowledge bundle.",
+      "expected_output": "An MBA-lens risk register with Risk ID, Category, Description, Likelihood, Impact, Mitigation, and Source columns",
+      "assertions": [
+        {
+          "text": "Reads expert-observations.md BEFORE theme files",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads ALL themes/ files (broader routing than data readiness)",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads scope-map.md for coverage gap risks",
+          "type": "procedural"
+        },
+        {
+          "text": "Adopts MBA lens — uses vocabulary like project risk, stakeholder impact, strategic alignment",
+          "type": "tone"
+        },
+        {
+          "text": "Follows the output skeleton: Risk ID / Category / Description / Likelihood / Impact / Mitigation / Source",
+          "type": "format"
+        },
+        {
+          "text": "Identifies the P&L hierarchy completeness gap (Net Income vs EBIT) as a risk",
+          "type": "correctness"
+        },
+        {
+          "text": "Identifies the missing cost allocation methodology as a risk",
+          "type": "correctness"
+        },
+        {
+          "text": "Distinguishes confirmed risks from unverified concerns",
+          "type": "correctness"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "gap-analysis",
+      "prompt": "Produce a gap analysis from the business knowledge bundle. What's missing before we can start implementation?",
+      "expected_output": "An FP&A-lens gap analysis with Gap ID, Area, What's Missing, Impact on Delivery, Priority, and Source columns",
+      "assertions": [
+        {
+          "text": "Reads known-gaps.md as primary source",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads follow-up-questions.md for unresolved stakeholder questions",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads scope-map.md for process coverage analysis",
+          "type": "procedural"
+        },
+        {
+          "text": "Adopts FP&A lens — uses vocabulary like reporting grain, variance analysis, budget cycle",
+          "type": "tone"
+        },
+        {
+          "text": "Follows the output skeleton: Gap ID / Area / What's Missing / Impact on Delivery / Priority / Source",
+          "type": "format"
+        },
+        {
+          "text": "Routes to DIFFERENT files than the risk register (narrower, focused on gaps not all themes)",
+          "type": "routing"
+        }
+      ]
+    }
+  ]
+}

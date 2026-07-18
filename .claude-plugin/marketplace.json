@@ -3,5 +3,15 @@
   "owner": {
     "name": "Maxa"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "maxa-specs",
+      "source": "./plugins/maxa-specs",
+      "description": "Activate a Maxa Business Knowledge Bundle for data modeling, transform implementation, and business analysis",
+      "version": "0.1.0",
+      "author": {
+        "name": "Maxa"
+      }
+    }
+  ]
 }
