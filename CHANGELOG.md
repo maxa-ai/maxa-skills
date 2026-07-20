@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.0.0...v1.0.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* add sap-finance dataset notice about provenance and names ([658950d](https://github.com/maxa-ai/maxa-copilot-skills/commit/658950d02deb43d182dabd6c279cb2123e8763e8))
+
 ## 1.0.0 (2026-07-20)
 
 
