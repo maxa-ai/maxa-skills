@@ -1,5 +1,7 @@
 # VeloGroup SAP Source Schema (DuckDB)
 
+> Derived from the same dataset as the test bundle. See [NOTICE.md](../sap-finance-bundle/NOTICE.md) for provenance and disclaimer.
+
 ## Fact Table
 
 ### FinancialTransactions (167,136 rows)
