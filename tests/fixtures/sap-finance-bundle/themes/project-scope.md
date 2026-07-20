@@ -20,9 +20,9 @@ sources:
 | Karen Liu | VP FP&A | Financial reporting, KPIs, P&L structure | Kick-Off, Workshop |
 | Marcus Weber | SAP & IT Director | SAP data architecture, system conventions | Kick-Off, Workshop |
 | Priya Sharma | Senior Financial Analyst | Day-to-day data operations, reporting pain points | Workshop |
-| Amélie Théorêt | Delivery Manager (Maxa) | Project methodology, timeline | Kick-Off, Workshop |
-| Danny Le | Analytics Lead (Maxa) | Data modeling, analytics design | Kick-Off, Workshop |
-| Lamia Benali | Analytics Engineer (Maxa) | Data profiling, technical modeling | Workshop |
+| Sophie Marchand | Delivery Manager (Maxa) | Project methodology, timeline | Kick-Off, Workshop |
+| Julien Tremblay | Analytics Lead (Maxa) | Data modeling, analytics design | Kick-Off, Workshop |
+| Nadia Khoury | Analytics Engineer (Maxa) | Data profiling, technical modeling | Workshop |
 
 ## Project Objectives
 
@@ -101,7 +101,7 @@ Source: VeloGroup-Maxa-Project-Kick-Off.md, Location: Kick-Off, Stefan Richter, 
 
 | Mechanism | Frequency | Participants |
 |-----------|-----------|--------------|
-| Weekly touchpoint | Wednesdays 10 AM | Karen Liu, Marcus Weber, Danny Le, Amélie Théorêt |
+| Weekly touchpoint | Wednesdays 10 AM | Karen Liu, Marcus Weber, Julien Tremblay, Sophie Marchand |
 | Monthly steering | Monthly | Stefan Richter + Maxa leads |
 | Day-to-day communication | As needed | All — Microsoft Teams dedicated channel |
 

@@ -114,7 +114,7 @@ Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[12:37]
 > {"speaker": "Karen Liu", "timestamp": "12:37", "quote": "Meaning for an operating expense transaction, the CUSTOMERID is set to hash and the PRODUCTID is set to hash. Because a payroll expense isn't tied to a specific customer or a specific product. It's an organizational cost assigned to a profit center."}
 
 Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[12:54]
-> {"speaker": "Lamia Benali", "timestamp": "12:54", "quote": "So the dimensionality varies by account type. Revenue and COGS: full grain with customer, product, and profit center. OpEx: profit center only with hash for customer and product."}
+> {"speaker": "Nadia Khoury", "timestamp": "12:54", "quote": "So the dimensionality varies by account type. Revenue and COGS: full grain with customer, product, and profit center. OpEx: profit center only with hash for customer and product."}
 
 Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[13:05]
 > {"speaker": "Karen Liu", "timestamp": "13:05", "quote": "Exactly right. That's a fundamental characteristic of the data."}

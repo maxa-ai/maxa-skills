@@ -105,7 +105,7 @@ Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[50:03]
 > {"speaker": "Karen Liu", "timestamp": "50:03", "quote": "In our extract, revenue is positive and COGS is positive. When you calculate Gross Margin, you subtract COGS from Net Revenue. The sign isn't embedded in the value — you apply it based on the P&L hierarchy structure. Revenue accounts add, cost accounts subtract."}
 
 Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[50:22]
-> {"speaker": "Danny Le", "timestamp": "50:22", "quote": "So the hierarchy implicitly defines the arithmetic. Gross Margin equals the sum of Net Revenue children minus the sum of COGS children."}
+> {"speaker": "Julien Tremblay", "timestamp": "50:22", "quote": "So the hierarchy implicitly defines the arithmetic. Gross Margin equals the sum of Net Revenue children minus the sum of COGS children."}
 
 Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[50:30]
 > {"speaker": "Karen Liu", "timestamp": "50:30", "quote": "Exactly. The hierarchy is both the display structure and the calculation structure."}
@@ -144,7 +144,7 @@ Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[12:37]
 > {"speaker": "Karen Liu", "timestamp": "12:37", "quote": "Meaning for an operating expense transaction, the CUSTOMERID is set to hash and the PRODUCTID is set to hash. Because a payroll expense isn't tied to a specific customer or a specific product. It's an organizational cost assigned to a profit center."}
 
 Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[12:54]
-> {"speaker": "Lamia Benali", "timestamp": "12:54", "quote": "So the dimensionality varies by account type. Revenue and COGS: full grain with customer, product, and profit center. OpEx: profit center only with hash for customer and product."}
+> {"speaker": "Nadia Khoury", "timestamp": "12:54", "quote": "So the dimensionality varies by account type. Revenue and COGS: full grain with customer, product, and profit center. OpEx: profit center only with hash for customer and product."}
 
 ### Rule 5: Hash (#) as Legitimate Dimension Member
 
