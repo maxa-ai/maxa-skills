@@ -1,0 +1,81 @@
+{
+  "skill_name": "guide",
+  "evals": [
+    {
+      "id": 1,
+      "name": "what-is-preflight",
+      "prompt": "What is autopilot-preflight and how do I use it?",
+      "expected_output": "Explains that it extracts source system data into DuckDB for Autopilot, lists the main commands, and describes the typical workflow",
+      "assertions": [
+        {
+          "text": "Explains the purpose: extracting source system data into DuckDB for Autopilot",
+          "type": "correctness"
+        },
+        {
+          "text": "Lists the main commands: test, discover, inspect column-stats, validate-date-filter-spec, run",
+          "type": "correctness"
+        },
+        {
+          "text": "Describes the typical workflow order: test → discover → date-filter-spec → run",
+          "type": "correctness"
+        },
+        {
+          "text": "Mentions that --interactive must NOT be used in tool calls",
+          "type": "constraint"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "snowflake-connection-setup",
+      "prompt": "How do I set up a Snowflake connection for autopilot-preflight?",
+      "expected_output": "Explains the connections.toml format, shows example configurations, lists supported authenticators",
+      "assertions": [
+        {
+          "text": "Points to ~/.snowflake/connections.toml as the configuration file",
+          "type": "correctness"
+        },
+        {
+          "text": "Shows at least one example connection configuration in TOML format",
+          "type": "format"
+        },
+        {
+          "text": "Lists supported authenticators including snowflake, snowflake_jwt, externalbrowser, oauth",
+          "type": "correctness"
+        },
+        {
+          "text": "Mentions that --connection NAME is required on every snowflake subcommand",
+          "type": "constraint"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "export-guidance",
+      "prompt": "I need to export data from our Snowflake database for the Autopilot pipeline. Walk me through it.",
+      "expected_output": "Walks through the full workflow: verify connection, discover schema, generate date-filter spec, then run export with appropriate flags",
+      "assertions": [
+        {
+          "text": "Starts with testing the connection before any data operation",
+          "type": "procedural"
+        },
+        {
+          "text": "Recommends running discover before exporting to understand the schema",
+          "type": "procedural"
+        },
+        {
+          "text": "Mentions the date-filter-spec skill for classifying tables",
+          "type": "correctness"
+        },
+        {
+          "text": "Explains sampling strategies and their trade-offs",
+          "type": "correctness"
+        },
+        {
+          "text": "Does NOT suggest using --interactive flag",
+          "type": "constraint"
+        }
+      ]
+    }
+  ]
+}

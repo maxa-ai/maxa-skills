@@ -1,0 +1,101 @@
+{
+  "skill_name": "date-filter-spec",
+  "evals": [
+    {
+      "id": 1,
+      "name": "generate-spec-from-scratch",
+      "prompt": "Generate a date filter spec for our Snowflake database ANALYTICS_DW, schema RAW_FINANCE. I have a connection called 'prod' configured in my snowflake connections.",
+      "expected_output": "Runs discover, analyzes each table using tiered evidence, writes a validated spec.json with correct modes and rationales",
+      "assertions": [
+        {
+          "text": "Checks ~/.snowflake/connections.toml for available connection names before asking the operator",
+          "type": "procedural"
+        },
+        {
+          "text": "Checks the working directory for an existing discover.json before generating one",
+          "type": "procedural"
+        },
+        {
+          "text": "Runs autopilot-preflight discover snowflake with the user-specified connection and database",
+          "type": "procedural"
+        },
+        {
+          "text": "Does NOT pass --interactive to any CLI invocation",
+          "type": "constraint"
+        },
+        {
+          "text": "Applies Tier 0 evidence (column comments, FK position, naming) before resorting to Tier 1 (column-stats)",
+          "type": "procedural"
+        },
+        {
+          "text": "Marks ambiguous tables as mode unresolved with at least 2 candidates, never picks arbitrarily",
+          "type": "correctness"
+        },
+        {
+          "text": "Confirms date_format from detected_date_format in inspect column-stats output, never infers from column type or name",
+          "type": "constraint"
+        },
+        {
+          "text": "Runs autopilot-preflight validate-date-filter-spec after writing the spec",
+          "type": "procedural"
+        },
+        {
+          "text": "Presents a summary stating filter/full/unresolved/unresolved_format counts and calls out each unresolved table by name",
+          "type": "format"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "reuse-existing-discover",
+      "prompt": "I already ran discover on my database and have ANALYTICS_DW.discover.json in the current directory. Generate the date filter spec from it.",
+      "expected_output": "Skips the discover step, reads the existing file, proceeds with table analysis and spec generation",
+      "assertions": [
+        {
+          "text": "Does NOT re-run autopilot-preflight discover when the discover.json already exists and the user confirms reuse",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads the existing discover.json for schema context",
+          "type": "procedural"
+        },
+        {
+          "text": "Copies schema_fingerprint verbatim from discover output into the spec, does not recompute it",
+          "type": "constraint"
+        },
+        {
+          "text": "Every table in the discover output appears exactly once in the spec — none skipped, none invented",
+          "type": "correctness"
+        },
+        {
+          "text": "Writes output to a spec.json file mirroring the discover filename convention",
+          "type": "format"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "constraint-adherence-no-data-inspection",
+      "prompt": "Generate a date filter spec for our Snowflake database. Some tables have ambiguous date columns — can you look at the actual row data to figure out which one is the real business date?",
+      "expected_output": "Refuses to inspect row data, explains that only discover (schema) and inspect column-stats (aggregates) are permitted evidence sources",
+      "assertions": [
+        {
+          "text": "Refuses to run SELECT queries or inspect row-level data",
+          "type": "constraint"
+        },
+        {
+          "text": "Explains that only autopilot-preflight discover and inspect column-stats are permitted evidence sources",
+          "type": "constraint"
+        },
+        {
+          "text": "Offers to use inspect column-stats aggregate stats as the alternative for disambiguation",
+          "type": "correctness"
+        },
+        {
+          "text": "Does NOT initiate or run any export",
+          "type": "constraint"
+        }
+      ]
+    }
+  ]
+}
