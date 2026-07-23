@@ -12,6 +12,15 @@
       "author": {
         "name": "Maxa"
       }
+    },
+    {
+      "name": "maxa-preflight",
+      "source": "./plugins/maxa-preflight",
+      "description": "Automate Autopilot Preflight workflows — date-filter spec generation, binary installation, and guided usage for data engineers extracting source system data into DuckDB",
+      "version": "0.1.0",
+      "author": {
+        "name": "Maxa"
+      }
     }
   ]
 }

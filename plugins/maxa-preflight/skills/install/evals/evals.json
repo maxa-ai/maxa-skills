@@ -1,0 +1,93 @@
+{
+  "skill_name": "install",
+  "evals": [
+    {
+      "id": 1,
+      "name": "install-on-mac",
+      "prompt": "I need autopilot-preflight installed on my Mac.",
+      "expected_output": "Checks if already installed, detects macOS platform, lists release assets to find versioned filename, downloads binary + checksum, verifies SHA-256, installs to ~/.local/bin, clears quarantine, confirms version",
+      "assertions": [
+        {
+          "text": "Checks whether autopilot-preflight is already installed via --version before downloading",
+          "type": "procedural"
+        },
+        {
+          "text": "Detects OS and architecture automatically via uname, does not ask the user",
+          "type": "procedural"
+        },
+        {
+          "text": "Lists release assets to discover the versioned filename before downloading (does not hardcode a filename pattern without the version)",
+          "type": "procedural"
+        },
+        {
+          "text": "Downloads both the binary and the .sha256 checksum file",
+          "type": "procedural"
+        },
+        {
+          "text": "Verifies the SHA-256 checksum before installing",
+          "type": "constraint"
+        },
+        {
+          "text": "Clears macOS quarantine with xattr -d com.apple.quarantine on Darwin",
+          "type": "procedural"
+        },
+        {
+          "text": "Runs autopilot-preflight --version to confirm installation succeeded",
+          "type": "procedural"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "install-without-gh-cli",
+      "prompt": "I need to install autopilot-preflight but I don't have the gh CLI tool. Can you help?",
+      "expected_output": "Falls back to curl against the GitHub Releases API, still verifies checksum, completes the install without gh",
+      "assertions": [
+        {
+          "text": "Does not attempt to use gh commands when the user says gh is unavailable",
+          "type": "constraint"
+        },
+        {
+          "text": "Uses curl to fetch the latest release tag from the GitHub API",
+          "type": "procedural"
+        },
+        {
+          "text": "Downloads both the binary and the .sha256 checksum file via curl",
+          "type": "procedural"
+        },
+        {
+          "text": "Verifies the SHA-256 checksum before installing",
+          "type": "constraint"
+        },
+        {
+          "text": "Completes the full install procedure (chmod, install to ~/.local/bin, verify --version)",
+          "type": "procedural"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "install-on-linux",
+      "prompt": "Set up autopilot-preflight on my Ubuntu server.",
+      "expected_output": "Detects Linux x86_64, downloads the linux-amd64 binary, verifies checksum, does NOT attempt xattr quarantine clearing",
+      "assertions": [
+        {
+          "text": "Detects Linux platform and selects the linux-amd64 or linux-arm64 artifact suffix",
+          "type": "procedural"
+        },
+        {
+          "text": "Does NOT run xattr -d com.apple.quarantine on Linux",
+          "type": "constraint"
+        },
+        {
+          "text": "Verifies the SHA-256 checksum before installing",
+          "type": "constraint"
+        },
+        {
+          "text": "Provides the correct shell rc file for bash (bashrc or profile) if PATH needs updating",
+          "type": "correctness"
+        }
+      ]
+    }
+  ]
+}
