@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.0.1...v1.1.0) (2026-07-23)
+
+
+### Features
+
+* **maxa-preflight:** initial version of the maxa-preflight plugin ([60d50a3](https://github.com/maxa-ai/maxa-copilot-skills/commit/60d50a34923bea478ccd7c61cb0c114cdd4ae46f))
+
 ## [1.0.1](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.0.0...v1.0.1) (2026-07-20)
 
 
