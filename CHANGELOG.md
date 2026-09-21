@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.1.0...v1.2.0) (2026-09-21)
+
+
+### Features
+
+* **maxa-specs:** rename business-knowledge-bundle to ai-specification ([ed47d45](https://github.com/maxa-ai/maxa-copilot-skills/commit/ed47d45c4e6a4ffc3e7d16a964c5771b825ecc27))
+
+
+### Bug Fixes
+
+* bump maxa-specs version in marketplace.json to match plugin.json ([00a4ff9](https://github.com/maxa-ai/maxa-copilot-skills/commit/00a4ff9f2e65f4511f708af0458fb897b435e0fc))
+
 ## [1.1.0](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.0.1...v1.1.0) (2026-07-23)
 
 
