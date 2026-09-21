@@ -4,7 +4,7 @@ title: Known Gaps
 description: Documented gaps in the VeloGroup business knowledge base — areas where extraction is incomplete, data sync gaps exist, or business information was not provided by stakeholders.
 confidence: high
 timestamp: 2026-07-15T16:00:00Z
-tags: [bundle_metadata, known-gaps, completeness]
+tags: [ai_specification, known-gaps, completeness]
 sources:
   - VeloGroup-Maxa-FPA-Workshop
   - VeloGroup-Maxa-Project-Kick-Off

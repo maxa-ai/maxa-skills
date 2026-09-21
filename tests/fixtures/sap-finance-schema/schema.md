@@ -1,6 +1,6 @@
 # VeloGroup SAP Source Schema (DuckDB)
 
-> Derived from the same dataset as the test bundle. See [NOTICE.md](../sap-finance-bundle/NOTICE.md) for provenance and disclaimer.
+> Derived from the same dataset as the test AI specification. See [NOTICE.md](../sap-finance-ai-specification/NOTICE.md) for provenance and disclaimer.
 
 ## Fact Table
 

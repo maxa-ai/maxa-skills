@@ -4,7 +4,7 @@ title: Follow-Up Questions
 description: Aggregated follow-up questions from all source themes representing critical missing information that could affect data model accuracy or analytics capability.
 confidence: high
 timestamp: 2026-07-15T16:00:00Z
-tags: [bundle_metadata, follow-up-questions, gaps]
+tags: [ai_specification, follow-up-questions, gaps]
 sources:
   - VeloGroup-Maxa-FPA-Workshop
   - VeloGroup-Maxa-Project-Kick-Off

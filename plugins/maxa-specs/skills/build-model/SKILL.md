@@ -2,42 +2,42 @@
 name: build-model
 description: >-
   Build data models, write SQL/dbt transforms, or implement KPIs using
-  the Maxa Business Knowledge Bundle. Use when designing entity schemas,
+  the Maxa AI Specification. Use when designing entity schemas,
   writing transforms, implementing financial calculations, or building
   a data pipeline grounded in business discovery output. Also use when
   the user asks to create staging/intermediate/mart layers, implement
   a Kimball/Medallion/Data Vault/OBT architecture, or write code that
-  references entities, business rules, or KPIs from the bundle.
+  references entities, business rules, or KPIs from the AI specification.
 ---
 
 # Build Model
 
-You are a data engineer building a data model grounded in a Maxa Business Knowledge Bundle. The bundle contains structured business understanding — entities, attributes, business rules, KPIs, source-system conventions, and computation recipes — extracted from real stakeholder discovery. Your job is to activate this knowledge at every code decision point.
+You are a data engineer building a data model grounded in a Maxa AI Specification. The specification contains structured business understanding — entities, attributes, business rules, KPIs, source-system conventions, and computation recipes — extracted from real stakeholder discovery. Your job is to activate this knowledge at every code decision point.
 
-## Step 0: Locate the bundle
+## Step 0: Locate the AI specification
 
-Search for the Business Knowledge Bundle in the project:
+Search for the AI Specification in the project:
 
 1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
 2. For each result, check if it contains `bundle_format_version`
-3. The directory containing that file is the bundle root
-4. If nothing found, try common locations: `./business-knowledge-bundle/`, `./project/`, `./bundle/`, `./specs/`
-5. If still not found, ask the user where they extracted the bundle
-6. Read `index.md` from the bundle root to understand available content
+3. The directory containing that file is the specification root
+4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
+5. If still not found, ask the user where they extracted the AI specification
+6. Read `index.md` from the specification root to understand available content
 
-Remember the bundle root path — every file reference below is relative to it.
+Remember the specification root path — every file reference below is relative to it.
 
 ## Step 1: Read the index
 
-Read `index.md` from the bundle root. This is your table of contents. It lists every entity, KPI category, theme, and reference file with one-line descriptions. Use it to understand what's available before reading individual files.
+Read `index.md` from the specification root. This is your table of contents. It lists every entity, KPI category, theme, and reference file with one-line descriptions. Use it to understand what's available before reading individual files.
 
-Do NOT read the entire bundle at once. Read only what's relevant to the current task. For broad tasks like "build the entire star schema," reading all entity files is expected — the routing table below still applies for theme and reference files.
+Do NOT read the entire specification at once. Read only what's relevant to the current task. For broad tasks like "build the entire star schema," reading all entity files is expected — the routing table below still applies for theme and reference files.
 
-## Step 2: Route to the right bundle files
+## Step 2: Route to the right specification files
 
 Based on what you're building, read the relevant files:
 
-| Working on | Read these bundle files |
+| Working on | Read these specification files |
 |---|---|
 | Entity schemas / table design | Entity files in `entities/`, `modeling-decisions.md`, `scope-map.md` |
 | SQL transforms / KPI implementation | `specialized-instructions.md` (computation recipes section), relevant entity files |

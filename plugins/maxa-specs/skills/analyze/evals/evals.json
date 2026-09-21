@@ -1,6 +1,6 @@
 {
   "skill_name": "analyze",
-  "fixture_path": "tests/fixtures/sap-finance-bundle",
+  "fixture_path": "tests/fixtures/sap-finance-ai-specification",
   "evals": [
     {
       "id": 1,
@@ -9,7 +9,7 @@
       "expected_output": "A CPA-lens data readiness review with Executive Summary, Data Sources Assessment, Entity Coverage, Data Quality Risks, Gaps & Blockers, and Recommendation sections",
       "assertions": [
         {
-          "text": "Discovers the bundle and reads index.md",
+          "text": "Discovers the AI specification and reads index.md",
           "type": "procedural"
         },
         {
@@ -41,7 +41,7 @@
           "type": "correctness"
         },
         {
-          "text": "Cites bundle files as sources for claims",
+          "text": "Cites specification files as sources for claims",
           "type": "grounding"
         }
       ]
@@ -49,7 +49,7 @@
     {
       "id": 2,
       "name": "risk-register",
-      "prompt": "Draft a risk register for this project based on the business knowledge bundle.",
+      "prompt": "Draft a risk register for this project based on the AI specification.",
       "expected_output": "An MBA-lens risk register with Risk ID, Category, Description, Likelihood, Impact, Mitigation, and Source columns",
       "assertions": [
         {
@@ -89,7 +89,7 @@
     {
       "id": 3,
       "name": "gap-analysis",
-      "prompt": "Produce a gap analysis from the business knowledge bundle. What's missing before we can start implementation?",
+      "prompt": "Produce a gap analysis from the AI specification. What's missing before we can start implementation?",
       "expected_output": "An FP&A-lens gap analysis with Gap ID, Area, What's Missing, Impact on Delivery, Priority, and Source columns",
       "assertions": [
         {

@@ -2,35 +2,35 @@
 name: check-model
 description: >-
   Review, audit, or validate an existing data model or set of transforms
-  against the Maxa Business Knowledge Bundle. Use when the user asks to
+  against the Maxa AI Specification. Use when the user asks to
   check their model, validate transforms, audit business rule compliance,
   run pre-flight checks, or verify that an implementation matches the
-  bundle's requirements. Also use when the user says "does my model
+  specification's requirements. Also use when the user says "does my model
   cover everything?", "what am I missing?", or "check against the specs."
 ---
 
 # Check Model
 
-You are auditing an existing data model or set of transforms against a Maxa Business Knowledge Bundle. Your job is to systematically verify that every business rule, data convention, and pre-flight requirement is addressed — and produce a structured pass/fail report.
+You are auditing an existing data model or set of transforms against a Maxa AI Specification. Your job is to systematically verify that every business rule, data convention, and pre-flight requirement is addressed — and produce a structured pass/fail report.
 
-## Step 0: Locate the bundle
+## Step 0: Locate the AI specification
 
-Search for the Business Knowledge Bundle in the project:
+Search for the AI Specification in the project:
 
 1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
 2. For each result, check if it contains `bundle_format_version`
-3. The directory containing that file is the bundle root
-4. If nothing found, try common locations: `./business-knowledge-bundle/`, `./project/`, `./bundle/`, `./specs/`
-5. If still not found, ask the user where they extracted the bundle
-6. Read `index.md` from the bundle root to understand available content
+3. The directory containing that file is the specification root
+4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
+5. If still not found, ask the user where they extracted the AI specification
+6. Read `index.md` from the specification root to understand available content
 
-Remember the bundle root path — every file reference below is relative to it.
+Remember the specification root path — every file reference below is relative to it.
 
 ## Step 1: Identify scope
 
-Read `index.md` and identify all entities in the bundle. Then identify which entities the user's implementation touches — read the user's code/models to determine this. The audit covers every entity present in both the bundle and the implementation.
+Read `index.md` and identify all entities in the specification. Then identify which entities the user's implementation touches — read the user's code/models to determine this. The audit covers every entity present in both the specification and the implementation.
 
-**Flag missing entities.** If the bundle defines entities the user has NOT implemented, flag them — especially if they appear as foreign keys on implemented entities. A missing dimension table (e.g., FiscalCalendar) that other entities reference is a structural gap, not an optional omission.
+**Flag missing entities.** If the specification defines entities the user has NOT implemented, flag them — especially if they appear as foreign keys on implemented entities. A missing dimension table (e.g., FiscalCalendar) that other entities reference is a structural gap, not an optional omission.
 
 ## Step 2: Audit business rules
 

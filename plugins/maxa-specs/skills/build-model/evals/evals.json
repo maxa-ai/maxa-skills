@@ -1,6 +1,6 @@
 {
   "skill_name": "build-model",
-  "fixture_path": "tests/fixtures/sap-finance-bundle",
+  "fixture_path": "tests/fixtures/sap-finance-ai-specification",
   "evals": [
     {
       "id": 1,
@@ -49,7 +49,7 @@
     {
       "id": 2,
       "name": "single-entity-gross-margin",
-      "prompt": "Using the business knowledge bundle, write a dbt model that computes Gross Margin by product line. The source database schema is documented in tests/fixtures/sap-finance-schema/schema.md.",
+      "prompt": "Using the AI specification, write a dbt model that computes Gross Margin by product line. The source database schema is documented in tests/fixtures/sap-finance-schema/schema.md.",
       "expected_output": "A SQL/dbt model that computes Net Revenue minus COGS using the hierarchy-driven arithmetic, grouped by product line via the ProfitCenter hierarchy",
       "assertions": [
         {
@@ -80,12 +80,12 @@
     },
     {
       "id": 3,
-      "name": "bundle-discovery-from-subdirectory",
-      "prompt": "I have a business knowledge bundle somewhere in this project. Help me build a staging model for the Customer entity.",
-      "expected_output": "Discovers the bundle, reads the Customer entity file, produces a staging model with correct attributes and data conventions",
+      "name": "ai-spec-discovery-from-subdirectory",
+      "prompt": "I have an AI specification somewhere in this project. Help me build a staging model for the Customer entity.",
+      "expected_output": "Discovers the AI specification, reads the Customer entity file, produces a staging model with correct attributes and data conventions",
       "assertions": [
         {
-          "text": "Locates the bundle without the user specifying the path",
+          "text": "Locates the AI specification without the user specifying the path",
           "type": "procedural"
         },
         {
