@@ -1,15 +1,15 @@
 {
   "skill_name": "check-model",
-  "fixture_path": "tests/fixtures/sap-finance-bundle",
+  "fixture_path": "tests/fixtures/sap-finance-ai-specification",
   "evals": [
     {
       "id": 1,
       "name": "audit-five-entities",
-      "prompt": "Check my dbt models against the business knowledge bundle. I've built staging models for FinancialTransaction, Customer, Product, ProfitCenter, and GLAccount.",
+      "prompt": "Check my dbt models against the AI specification. I've built staging models for FinancialTransaction, Customer, Product, ProfitCenter, and GLAccount.",
       "expected_output": "A structured audit report with Summary, Missing Entities, Business Rules, Pre-Flight, Numerical Validation, Business Questions, and Risks sections",
       "assertions": [
         {
-          "text": "Discovers the bundle and reads index.md",
+          "text": "Discovers the AI specification and reads index.md",
           "type": "procedural"
         },
         {
@@ -53,7 +53,7 @@
     {
       "id": 2,
       "name": "audit-single-entity",
-      "prompt": "I just built a staging model for FinancialTransaction. Check it against the bundle — did I handle everything?",
+      "prompt": "I just built a staging model for FinancialTransaction. Check it against the AI specification — did I handle everything?",
       "expected_output": "A focused audit on FinancialTransaction covering its 7 business rules, 9 pre-flight items, and relevant numerical examples",
       "assertions": [
         {

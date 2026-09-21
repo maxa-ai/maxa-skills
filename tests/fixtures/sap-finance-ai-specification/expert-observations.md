@@ -4,7 +4,7 @@ title: Expert Observations
 description: Domain expert interpretive commentary on non-obvious, high-priority, or potentially dangerous aspects of VeloGroup's financial data and business context that structured files alone may not convey.
 confidence: high
 timestamp: 2026-07-15T16:00:00Z
-tags: [bundle_metadata, expert-observations, interpretive, domain-expertise]
+tags: [ai_specification, expert-observations, interpretive, domain-expertise]
 sources:
   - VeloGroup-Maxa-FPA-Workshop
   - VeloGroup-Maxa-Project-Kick-Off
@@ -12,7 +12,7 @@ sources:
 
 # Expert Observations
 
-These observations restore the interpretive "so what" behind facts that the bundle already contains in structured form. When a stakeholder explains *why* something matters, that framing signals importance in a way that a structured data table cannot.
+These observations restore the interpretive "so what" behind facts that the specification already contains in structured form. When a stakeholder explains *why* something matters, that framing signals importance in a way that a structured data table cannot.
 
 ## 1. The Sign Convention is a Compound Rule — Get It Wrong and Everything Breaks
 

@@ -1,7 +1,7 @@
 ---
 type: specialized_instructions
 title: Specialized Instructions
-description: Project-specific computation recipes, pre-flight checklists, and entity relationship patterns for VeloGroup's FP&A analytics platform — grounded in bundle content with explicit citations.
+description: Project-specific computation recipes, pre-flight checklists, and entity relationship patterns for VeloGroup's FP&A analytics platform — grounded in specification content with explicit citations.
 confidence: high
 timestamp: 2026-07-15T17:00:00Z
 tags: [specialized_instructions]

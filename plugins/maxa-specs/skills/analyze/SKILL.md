@@ -1,33 +1,33 @@
 ---
 name: analyze
 description: >-
-  Produce business deliverables grounded in the Maxa Business Knowledge
-  Bundle — risk registers, gap analyses, business specifications,
-  requirements documents, stakeholder briefs, data readiness reviews,
-  or project assessments. Use when the user asks to write a business
-  document, analyze the project scope, assess data readiness, draft
-  a deliverable for stakeholders, or produce any document that
-  synthesizes business understanding from the bundle.
+  Produce business deliverables grounded in the Maxa AI Specification —
+  risk registers, gap analyses, business specifications, requirements
+  documents, stakeholder briefs, data readiness reviews, or project
+  assessments. Use when the user asks to write a business document,
+  analyze the project scope, assess data readiness, draft a deliverable
+  for stakeholders, or produce any document that synthesizes business
+  understanding from the AI specification.
 ---
 
 # Analyze
 
-You are a senior consultant producing a deliverable grounded in a Maxa Business Knowledge Bundle. The bundle contains structured business understanding extracted from real stakeholder discovery — themes, entities, expert observations, known gaps, and follow-up questions. Your job is to synthesize this into a professional document that clearly separates confirmed facts from unresolved items.
+You are a senior consultant producing a deliverable grounded in a Maxa AI Specification. The specification contains structured business understanding extracted from real stakeholder discovery — themes, entities, expert observations, known gaps, and follow-up questions. Your job is to synthesize this into a professional document that clearly separates confirmed facts from unresolved items.
 
 Adopt the professional lens indicated in the routing table below — it determines your vocabulary, depth, judgment about what's a blocker vs. a footnote, and how you frame findings for the reader.
 
-## Step 0: Locate the bundle
+## Step 0: Locate the AI specification
 
-Search for the Business Knowledge Bundle in the project:
+Search for the AI Specification in the project:
 
 1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
 2. For each result, check if it contains `bundle_format_version`
-3. The directory containing that file is the bundle root
-4. If nothing found, try common locations: `./business-knowledge-bundle/`, `./project/`, `./bundle/`, `./specs/`
-5. If still not found, ask the user where they extracted the bundle
-6. Read `index.md` from the bundle root to understand available content
+3. The directory containing that file is the specification root
+4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
+5. If still not found, ask the user where they extracted the AI specification
+6. Read `index.md` from the specification root to understand available content
 
-Remember the bundle root path — every file reference below is relative to it.
+Remember the specification root path — every file reference below is relative to it.
 
 ## Step 1: Read expert observations first
 
@@ -39,7 +39,7 @@ Read this before any other content. It frames what matters most.
 
 Always read these two files next:
 
-- `known-gaps.md` — documented gaps in the knowledge base. These are things the bundle explicitly acknowledges it does NOT know — coverage caveats, missing information, areas where extraction was incomplete.
+- `known-gaps.md` — documented gaps in the knowledge base. These are things the specification explicitly acknowledges it does NOT know — coverage caveats, missing information, areas where extraction was incomplete.
 - `follow-up-questions.md` — critical missing information items that stakeholders need to answer. These are genuine unknowns that could not be resolved from the available sources.
 
 Then read `conflicts.md` — unresolved contradictions between sources, if any exist.
@@ -50,7 +50,7 @@ This content is what prevents your deliverable from presenting everything at equ
 
 Read the files relevant to what you're producing, adopt the indicated professional lens, and follow the output skeleton:
 
-| Deliverable | Lens | Read these bundle files |
+| Deliverable | Lens | Read these specification files |
 |---|---|---|
 | Risk register | **MBA** | All `themes/` files + `scope-map.md` (process-to-question coverage gaps) + `known-gaps.md` + `expert-observations.md` + `follow-up-questions.md` + `modeling-decisions.md` |
 | Gap analysis | **FP&A** | `known-gaps.md` + `follow-up-questions.md` + `scope-map.md` (process-to-question coverage gaps) + `expert-observations.md` |
@@ -67,7 +67,7 @@ Read the files relevant to what you're producing, adopt the indicated profession
 
 **Output skeletons** — structure your deliverable with at minimum these sections:
 
-**Risk register:** Risk ID / Category / Description / Likelihood / Impact / Mitigation / Source (bundle citation)
+**Risk register:** Risk ID / Category / Description / Likelihood / Impact / Mitigation / Source (specification citation)
 
 **Gap analysis:** Gap ID / Area / What's Missing / Impact on Delivery / Priority / Source
 
@@ -90,20 +90,20 @@ Step 3 provides the core content for your deliverable type. When you need additi
 
 ## Step 5: Ground every claim
 
-Every non-trivial statement in your deliverable must trace back to bundle content:
+Every non-trivial statement in your deliverable must trace back to specification content:
 
 - Quote verbatim when the source wording matters (stakeholder statements, business rules, exact figures)
-- Cite the bundle file and section: "per Entity: FinancialTransaction > Business Rules > Rule 1"
-- Do NOT paraphrase in ways that lose the RFC 2119 strength — "[MUST]" in the bundle stays "[MUST]" in the deliverable
+- Cite the specification file and section: "per Entity: FinancialTransaction > Business Rules > Rule 1"
+- Do NOT paraphrase in ways that lose the RFC 2119 strength — "[MUST]" in the specification stays "[MUST]" in the deliverable
 - When using `reference/business-questions.md`, note the `source_type` (`formula`, `extracted_data`, `stakeholder_statement`) — a formula-derived answer carries different weight than a one-time stakeholder assertion
 
 ## Step 6: Separate confirmed from unresolved
 
 Structure your deliverable so the reader can immediately distinguish:
 
-- **Confirmed** — facts grounded in multiple sources or validated data (high confidence in bundle frontmatter)
+- **Confirmed** — facts grounded in multiple sources or validated data (high confidence in specification frontmatter)
 - **Needs verification** — single-source statements, stakeholder approximations, or items flagged as `stakeholder_statement` source type
 - **Known gap** — explicitly documented in `known-gaps.md` or `follow-up-questions.md`
 - **Risk** — items from `expert-observations.md` that highlight non-obvious dangers or dependencies
 
-Do NOT flatten these into a single undifferentiated list. The whole point of the bundle's negative-inference layer is to tell the reader what they don't know — burying that distinction undermines the deliverable.
+Do NOT flatten these into a single undifferentiated list. The whole point of the specification's negative-inference layer is to tell the reader what they don't know — burying that distinction undermines the deliverable.

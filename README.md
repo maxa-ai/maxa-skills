@@ -6,7 +6,7 @@ Public Claude Code plugin marketplace for the Maxa organization.
 
 | Plugin | Skills | Description |
 |--------|--------|-------------|
-| `maxa-specs` | `build-model`, `check-model`, `analyze` | Activate a Maxa Business Knowledge Bundle for data modeling, transform implementation, and business analysis |
+| `maxa-specs` | `build-model`, `check-model`, `analyze` | Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis |
 | `maxa-preflight` | `date-filter-spec`, `install`, `guide` | Automate Autopilot Preflight workflows — date-filter spec generation, binary installation, and guided usage for data engineers extracting source system data into DuckDB |
 
 ## Installation
@@ -24,8 +24,8 @@ Public Claude Code plugin marketplace for the Maxa organization.
 Once installed, invoke skills with the plugin namespace:
 
 ```
-/maxa-specs:build-model         # Build data models and transforms from the bundle
-/maxa-specs:check-model         # Audit an existing model against bundle requirements
+/maxa-specs:build-model         # Build data models and transforms from the AI specification
+/maxa-specs:check-model         # Audit an existing model against AI specification requirements
 /maxa-specs:analyze             # Produce business deliverables (risk register, gap analysis, etc.)
 
 /maxa-preflight:date-filter-spec  # Generate a per-table date-filtering decision spec
@@ -41,7 +41,7 @@ claude --plugin-dir ./plugins/<plugin-name>
 
 ## Evaluations
 
-Each skill includes `evals/evals.json` with test cases and assertions, compatible with Anthropic's [skill-creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) plugin. Test fixtures (bundles, schemas) are in `tests/fixtures/`.
+Each skill includes `evals/evals.json` with test cases and assertions, compatible with Anthropic's [skill-creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) plugin. Test fixtures (AI specifications, schemas) are in `tests/fixtures/`.
 
 To run evaluations:
 

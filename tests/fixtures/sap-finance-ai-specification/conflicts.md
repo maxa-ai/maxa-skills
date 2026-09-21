@@ -4,7 +4,7 @@ title: Conflicts
 description: Aggregated unresolved contradictions across all source themes — no conflicts were identified between VeloGroup's two source transcripts.
 confidence: high
 timestamp: 2026-07-15T16:00:00Z
-tags: [bundle_metadata, conflicts]
+tags: [ai_specification, conflicts]
 sources:
   - VeloGroup-Maxa-FPA-Workshop
   - VeloGroup-Maxa-Project-Kick-Off
@@ -16,7 +16,7 @@ sources:
 
 **No conflicts were identified** across the two source transcripts (FP&A Workshop and Project Kick-Off). All 10 stage-1 themes report empty `conflicts` arrays. VeloGroup stakeholders (Stefan Richter, Karen Liu, Marcus Weber, Priya Sharma) were consistent in their statements across both sessions.
 
-This is a positive finding for bundle quality — the business knowledge base has no internal contradictions that would require disambiguation by a consuming copilot.
+This is a positive finding for specification quality — the business knowledge base has no internal contradictions that would require disambiguation by a consuming copilot.
 
 ## Potential Ambiguities (Non-Contradictions)
 

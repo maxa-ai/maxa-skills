@@ -2,7 +2,7 @@
 okf_version: "0.1"
 ---
 
-# VeloGroup Business Discovery — Business Knowledge Bundle
+# VeloGroup Business Discovery — AI Specification
 
 ## Entities
 
