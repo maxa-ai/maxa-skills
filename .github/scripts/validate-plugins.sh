@@ -4,11 +4,22 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
 PLUGINS_DIR="$REPO_ROOT/plugins"
+# Plugins kept in plugins/ but intentionally not registered in marketplace.json.
+# They skip the orphan and version-bump checks; schema validation still runs.
+UNRELEASED_PLUGINS=(maxa-preflight)
 errors=0
 
 fail() {
   echo "FAIL: $1"
   errors=$((errors + 1))
+}
+
+is_unreleased() {
+  local name
+  for name in "${UNRELEASED_PLUGINS[@]}"; do
+    [ "$name" = "$1" ] && return 0
+  done
+  return 1
 }
 
 # ── 1. Marketplace JSON validation ──
@@ -61,6 +72,10 @@ for plugin_dir in "$PLUGINS_DIR"/*/; do
   plugin_name="$(basename "$plugin_dir")"
 
   if ! echo "$registered" | grep -qx "$plugin_name"; then
+    if is_unreleased "$plugin_name"; then
+      echo "OK: $plugin_name is unreleased, not registered on purpose"
+      continue
+    fi
     fail "plugin '$plugin_name' exists in plugins/ but is not registered in marketplace.json"
     found_orphan=true
   fi
@@ -109,6 +124,11 @@ if git rev-parse --verify "origin/$BASE_REF" >/dev/null 2>&1; then
 
         [ "${checked_plugins[$plugin_name]:-}" = "1" ] && continue
         checked_plugins[$plugin_name]=1
+
+        if is_unreleased "$plugin_name"; then
+          echo "OK: $plugin_name is unreleased, no version bump required"
+          continue
+        fi
 
         plugin_json="plugins/$plugin_name/.claude-plugin/plugin.json"
         [ -f "$plugin_json" ] || continue

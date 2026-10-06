@@ -29,6 +29,7 @@ plugins/<plugin-name>/
 - **plugin.json** must include `name`, `version`, and `description`
 - **SKILL.md** must include `name` and `description` in YAML frontmatter
 - New plugins must be registered in `.claude-plugin/marketplace.json`
+- To keep a plugin in `plugins/` without releasing it, leave it out of `marketplace.json` and add it to `UNRELEASED_PLUGINS` in `.github/scripts/validate-plugins.sh`
 - **Bump the version** in `plugin.json` on every change — updates won't propagate without it
 
 ### Naming

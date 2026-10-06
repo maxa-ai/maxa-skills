@@ -7,7 +7,6 @@ Public Claude Code plugin marketplace for the Maxa organization.
 | Plugin | Skills | Description |
 |--------|--------|-------------|
 | `maxa-specs` | `build-model`, `check-model`, `analyze` | Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis |
-| `maxa-preflight` | `date-filter-spec`, `install`, `guide` | Automate Autopilot Preflight workflows — date-filter spec generation, binary installation, and guided usage for data engineers extracting source system data into DuckDB |
 
 ## Installation
 
@@ -27,10 +26,6 @@ Once installed, invoke skills with the plugin namespace:
 /maxa-specs:build-model         # Build data models and transforms from the AI specification
 /maxa-specs:check-model         # Audit an existing model against AI specification requirements
 /maxa-specs:analyze             # Produce business deliverables (risk register, gap analysis, etc.)
-
-/maxa-preflight:date-filter-spec  # Generate a per-table date-filtering decision spec
-/maxa-preflight:install           # Install the autopilot-preflight binary
-/maxa-preflight:guide             # Learn what commands are available and how to use them
 ```
 
 ## Testing Locally
