@@ -1,10 +1,10 @@
 ---
-name: analyze
+name: write-business-doc
 description: >-
   Use only when the project contains a Maxa AI Specification (a folder
   with `maxa-spec.yaml`, or `project.yaml` declaring
   `bundle_format_version`), or when the user mentions a Maxa spec.
-  Produce business deliverables grounded in the Maxa AI Specification —
+  Write business documents grounded in the Maxa AI Specification —
   risk registers, gap analyses, business specifications, requirements
   documents, stakeholder briefs, data readiness reviews, or project
   assessments. Use when the user asks to write a business document,
@@ -13,7 +13,7 @@ description: >-
   understanding from the Maxa spec.
 ---
 
-# Analyze
+# Write Business Doc
 
 You are a senior consultant producing a deliverable grounded in a Maxa AI Specification. The specification contains structured business understanding extracted from real stakeholder discovery — themes, entities, expert observations, known gaps, and follow-up questions. Your job is to synthesize this into a professional document that clearly separates confirmed facts from unresolved items.
 

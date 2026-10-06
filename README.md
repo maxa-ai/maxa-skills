@@ -6,7 +6,7 @@ Public Claude Code plugin marketplace for the Maxa organization.
 
 | Plugin | Skills | Description |
 |--------|--------|-------------|
-| `maxa-specs` | `build-model`, `check-model`, `analyze` | Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis |
+| `maxa-spec` | `build-data-model`, `check-data-model`, `write-business-doc` | Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis |
 
 ## Installation
 
@@ -15,7 +15,7 @@ Public Claude Code plugin marketplace for the Maxa organization.
 /plugin marketplace add maxa-ai/maxa-copilot-skills
 
 # Install a plugin
-/plugin install <plugin-name>@maxa-copilot-skills
+/plugin install maxa-spec@maxa-copilot-skills
 ```
 
 ## Usage
@@ -23,9 +23,9 @@ Public Claude Code plugin marketplace for the Maxa organization.
 Once installed, invoke skills with the plugin namespace:
 
 ```
-/maxa-specs:build-model         # Build data models and transforms from the AI specification
-/maxa-specs:check-model         # Audit an existing model against AI specification requirements
-/maxa-specs:analyze             # Produce business deliverables (risk register, gap analysis, etc.)
+/maxa-spec:build-data-model     # Build data models and transforms from the Maxa spec
+/maxa-spec:check-data-model     # Audit an existing model against the Maxa spec
+/maxa-spec:write-business-doc   # Write business documents (risk register, gap analysis, etc.)
 ```
 
 ## Testing Locally
@@ -45,7 +45,7 @@ To run evaluations:
 /plugin install skill-creator@claude-plugins-official
 
 # Evaluate a specific skill
-/skill-creator:skill-creator evaluate my build-model skill
+/skill-creator:skill-creator evaluate my build-data-model skill
 ```
 
 The eval runner spawns with-skill and without-skill agents for each test case, grades assertions, and produces an HTML viewer for side-by-side comparison. Eval workspaces (`*-workspace/`) are gitignored.
