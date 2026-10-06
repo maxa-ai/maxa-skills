@@ -10,22 +10,22 @@ description: >-
   a data pipeline grounded in business discovery output. Also use when
   the user asks to create staging/intermediate/mart layers, implement
   a Kimball/Medallion/Data Vault/OBT architecture, or write code that
-  references entities, business rules, or KPIs from the AI specification.
+  references entities, business rules, or KPIs from the Maxa spec.
 ---
 
 # Build Model
 
 You are a data engineer building a data model grounded in a Maxa AI Specification. The specification contains structured business understanding — entities, attributes, business rules, KPIs, source-system conventions, and computation recipes — extracted from real stakeholder discovery. Your job is to activate this knowledge at every code decision point.
 
-## Step 0: Locate the AI specification
+## Step 0: Locate the Maxa spec
 
-Search for the AI Specification in the project:
+Search for the Maxa AI Specification in the project:
 
 1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
 2. For each result, check if it contains `bundle_format_version`
 3. The directory containing that file is the specification root
 4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
-5. If still not found, ask the user where they extracted the AI specification
+5. If still not found, ask the user where they extracted the Maxa spec
 6. Read `index.md` from the specification root to understand available content
 
 Remember the specification root path — every file reference below is relative to it.
@@ -47,7 +47,7 @@ Based on what you're building, read the relevant files:
 | Revenue, cost, or P&L logic | `themes/financial-processes.md`, `kpis/financial-kpis.md` |
 | Operational metrics | `themes/operational-processes.md`, `kpis/operational-kpis.md` |
 | Source-to-target mapping | `themes/source-systems.md`, `reference/entity-examples.md` |
-| Data type or format handling | Entity files (Data Conventions sections), `specialized-instructions.md` (pre-flight checklists section) |
+| Data type or format handling | Entity files (Data Conventions sections), `specialized-instructions.md` (Implementation Checklist section) |
 | Scope or requirements questions | `themes/project-scope.md`, `themes/use-cases.md` |
 | Industry or business context | `themes/business-domain.md` |
 | Validation values | `reference/numerical-examples.md`, `reference/business-questions.md` |
@@ -68,15 +68,15 @@ Whenever you build or modify anything related to an entity:
 
 This check runs fresh every time you touch an entity — there is no separate checklist to track. The entity file IS the checklist.
 
-## Step 4: Run pre-flight checks before finalizing transforms
+## Step 4: Run checks against the Implementation Checklist before finalizing transforms
 
-`specialized-instructions.md` contains a Pre-Flight Checklist section organized by entity. Before finalizing any transform or model:
+`specialized-instructions.md` contains an Implementation Checklist section organized by entity. Older Maxa specs title this section "Pre-Flight Checklist" — treat both headings as the same section. Before finalizing any transform or model:
 
-1. Read the pre-flight checklist for every entity your code touches
+1. Read the Implementation Checklist for every entity your code touches
 2. Verify each item against your implementation
 3. Flag any item that is not satisfied — do not proceed without acknowledging it
 
-Common pre-flight items include data type conversions (European comma decimals, BIGINT dates, VARCHAR amounts), sentinel value handling (the # hash value is a legitimate dimension member), leaf-vs-rollup account filtering, and version field filtering.
+Common checklist items include data type conversions (European comma decimals, BIGINT dates, VARCHAR amounts), sentinel value handling (the # hash value is a legitimate dimension member), leaf-vs-rollup account filtering, and version field filtering.
 
 ## Step 5: Use entity relationship patterns for joins
 

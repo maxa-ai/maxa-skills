@@ -5,11 +5,11 @@
     {
       "id": 1,
       "name": "audit-five-entities",
-      "prompt": "Check my dbt models against the AI specification. I've built staging models for FinancialTransaction, Customer, Product, ProfitCenter, and GLAccount.",
-      "expected_output": "A structured audit report with Summary, Missing Entities, Business Rules, Pre-Flight, Numerical Validation, Business Questions, and Risks sections",
+      "prompt": "Check my dbt models against the Maxa spec. I've built staging models for FinancialTransaction, Customer, Product, ProfitCenter, and GLAccount.",
+      "expected_output": "A structured audit report with Summary, Missing Entities, Business Rules, Implementation Checklist, Numerical Validation, Business Questions, and Risks sections",
       "assertions": [
         {
-          "text": "Discovers the AI specification and reads index.md",
+          "text": "Discovers the Maxa spec and reads index.md",
           "type": "procedural"
         },
         {
@@ -25,7 +25,7 @@
           "type": "format"
         },
         {
-          "text": "Reads specialized-instructions.md pre-flight checklists for all 5 entities",
+          "text": "Reads the specialized-instructions.md Implementation Checklist for all 5 entities",
           "type": "procedural"
         },
         {
@@ -53,8 +53,8 @@
     {
       "id": 2,
       "name": "audit-single-entity",
-      "prompt": "I just built a staging model for FinancialTransaction. Check it against the AI specification — did I handle everything?",
-      "expected_output": "A focused audit on FinancialTransaction covering its 7 business rules, 9 pre-flight items, and relevant numerical examples",
+      "prompt": "I just built a staging model for FinancialTransaction. Check it against the Maxa spec — did I handle everything?",
+      "expected_output": "A focused audit on FinancialTransaction covering its 7 business rules, 9 Implementation Checklist items, and relevant numerical examples",
       "assertions": [
         {
           "text": "Reads entities/financial-transaction.md for business rules",
@@ -65,8 +65,12 @@
           "type": "completeness"
         },
         {
-          "text": "Runs all 9 pre-flight checklist items from specialized-instructions.md for FinancialTransaction",
+          "text": "Runs all 9 Implementation Checklist items from specialized-instructions.md for FinancialTransaction",
           "type": "completeness"
+        },
+        {
+          "text": "Reads the checklist from the section headed \"Pre-Flight Checklist\" (older Maxa spec heading) and titles the report section \"Implementation Checklist\"",
+          "type": "procedural"
         },
         {
           "text": "Flags the European comma decimal conversion as a high-impact data-corrupting risk",
