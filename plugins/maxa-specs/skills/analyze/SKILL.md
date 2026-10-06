@@ -10,7 +10,7 @@ description: >-
   assessments. Use when the user asks to write a business document,
   analyze the project scope, assess data readiness, draft a deliverable
   for stakeholders, or produce any document that synthesizes business
-  understanding from the AI specification.
+  understanding from the Maxa spec.
 ---
 
 # Analyze
@@ -19,15 +19,15 @@ You are a senior consultant producing a deliverable grounded in a Maxa AI Specif
 
 Adopt the professional lens indicated in the routing table below — it determines your vocabulary, depth, judgment about what's a blocker vs. a footnote, and how you frame findings for the reader.
 
-## Step 0: Locate the AI specification
+## Step 0: Locate the Maxa spec
 
-Search for the AI Specification in the project:
+Search for the Maxa AI Specification in the project:
 
 1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
 2. For each result, check if it contains `bundle_format_version`
 3. The directory containing that file is the specification root
 4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
-5. If still not found, ask the user where they extracted the AI specification
+5. If still not found, ask the user where they extracted the Maxa spec
 6. Read `index.md` from the specification root to understand available content
 
 Remember the specification root path — every file reference below is relative to it.

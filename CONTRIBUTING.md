@@ -54,7 +54,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/en/
 
 ```
 feat(maxa-specs): add source-system routing to build-model
-fix(maxa-specs): correct pre-flight checklist for GLAccount
+fix(maxa-specs): correct Implementation Checklist for GLAccount
 docs: update README with new plugin
 ```
 

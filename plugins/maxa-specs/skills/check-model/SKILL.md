@@ -7,24 +7,24 @@ description: >-
   Review, audit, or validate an existing data model or set of transforms
   against the Maxa AI Specification. Use when the user asks to
   check their model, validate transforms, audit business rule compliance,
-  run pre-flight checks, or verify that an implementation matches the
-  specification's requirements. Also use when the user says "does my model
+  run checks against the Implementation Checklist, or verify that an
+  implementation matches the Maxa spec's requirements. Also use when the user says "does my model
   cover everything?", "what am I missing?", or "check against the specs."
 ---
 
 # Check Model
 
-You are auditing an existing data model or set of transforms against a Maxa AI Specification. Your job is to systematically verify that every business rule, data convention, and pre-flight requirement is addressed — and produce a structured pass/fail report.
+You are auditing an existing data model or set of transforms against a Maxa AI Specification. Your job is to systematically verify that every business rule, data convention, and Implementation Checklist item is addressed — and produce a structured pass/fail report.
 
-## Step 0: Locate the AI specification
+## Step 0: Locate the Maxa spec
 
-Search for the AI Specification in the project:
+Search for the Maxa AI Specification in the project:
 
 1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
 2. For each result, check if it contains `bundle_format_version`
 3. The directory containing that file is the specification root
 4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
-5. If still not found, ask the user where they extracted the AI specification
+5. If still not found, ask the user where they extracted the Maxa spec
 6. Read `index.md` from the specification root to understand available content
 
 Remember the specification root path — every file reference below is relative to it.
@@ -49,9 +49,9 @@ For each entity file in `entities/`:
 
 When a rule appears on multiple entities (e.g., Hash # sentinel), report it once with all affected entities listed — do not duplicate the same finding per entity.
 
-## Step 3: Run pre-flight checklists
+## Step 3: Run checks against the Implementation Checklist
 
-Read `specialized-instructions.md` — the Pre-Flight Checklist section. For each entity the implementation touches:
+Read `specialized-instructions.md` — the Implementation Checklist section. Older Maxa specs title this section "Pre-Flight Checklist" — treat both headings as the same section. For each entity the implementation touches:
 
 1. Walk every checklist item
 2. Search the user's code for evidence that the item is addressed
@@ -97,12 +97,12 @@ Output a structured report. Lead with the summary, then provide section details.
 Total counts: X rules passed, Y failed, Z N/A. Blockers (MUST-level failures) listed first, ranked by impact — data-corrupting issues (wrong type conversions, filtered sentinel values, missing sign logic) above cosmetic ones (naming, text language filters).
 
 ### Missing Entities
-Bundle entities not implemented, with which implemented entities reference them.
+Maxa spec entities not implemented, with which implemented entities reference them.
 
 ### Business Rules Compliance
 Per entity, per rule: PASS / FAIL / N/A with citations.
 
-### Pre-Flight Checklist
+### Implementation Checklist
 Per entity, per item: PASS / FAIL with citations.
 
 ### Numerical Validation
