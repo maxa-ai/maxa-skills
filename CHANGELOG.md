@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.2.0...v1.3.0) (2026-10-06)
+
+
+### Features
+
+* **maxa-spec:** rename maxa-specs plugin to maxa-spec and its skills ([c8bd258](https://github.com/maxa-ai/maxa-copilot-skills/commit/c8bd2585b8d809b893429435fcecf4eba5dd5e71))
+* **maxa-specs:** adopt Maxa spec and Implementation Checklist wording ([14eb32d](https://github.com/maxa-ai/maxa-copilot-skills/commit/14eb32df7452c8d7f7b3fbf504345801cf8c4dcd))
+* **maxa-specs:** read both maxa-spec.yaml and project.yaml formats ([ebe35d4](https://github.com/maxa-ai/maxa-copilot-skills/commit/ebe35d410e7f7a8268fb9840a6697fbb6d78130c))
+
+
+### Bug Fixes
+
+* **maxa-specs:** only trigger spec skills when a Maxa spec is present ([35861a0](https://github.com/maxa-ai/maxa-copilot-skills/commit/35861a0b92d0854f49cee383d122289e896c1099))
+* **maxa-spec:** test evals against real spec output ([0d670b3](https://github.com/maxa-ai/maxa-copilot-skills/commit/0d670b339c068da8167d8154e1746d611fb4aa2d))
+
 ## [1.2.0](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.1.0...v1.2.0) (2026-09-21)
 
 
