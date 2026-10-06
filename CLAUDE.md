@@ -11,7 +11,7 @@ Public Claude Code plugin marketplace for the Maxa organization. See [README.md]
 - Plugin names start with `maxa-`.
 - For the main specification, use `maxa-spec` in plugin, file and command names.
 
-Plugin names are user-facing identifiers — they appear in `/plugin install`, `enabledPlugins`, `pluginConfigs`, and skill permission rules. Rename a plugin only when the clearer name is worth the migration for users. When you do, add a `renames` entry to `.claude-plugin/marketplace.json` in the same commit, and document the migration in [README.md](README.md).
+Plugin names are user-facing identifiers — they appear in `/plugin install`, `enabledPlugins`, `pluginConfigs`, and skill permission rules. Settle on a name before the plugin is published.
 
 Current: `maxa-spec`. Planned: `maxa-pipelines`, `maxa-preflight`, `maxa-analyst`.
 

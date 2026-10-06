@@ -13,8 +13,5 @@
         "name": "Maxa"
       }
     }
-  ],
-  "renames": {
-    "maxa-specs": "maxa-spec"
-  }
+  ]
 }
