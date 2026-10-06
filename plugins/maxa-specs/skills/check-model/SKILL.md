@@ -1,6 +1,9 @@
 ---
 name: check-model
 description: >-
+  Use only when the project contains a Maxa AI Specification (a folder
+  with `maxa-spec.yaml`, or `project.yaml` declaring
+  `bundle_format_version`), or when the user mentions a Maxa spec.
   Review, audit, or validate an existing data model or set of transforms
   against the Maxa AI Specification. Use when the user asks to
   check their model, validate transforms, audit business rule compliance,

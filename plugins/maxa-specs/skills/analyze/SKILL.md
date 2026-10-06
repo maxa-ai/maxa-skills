@@ -1,6 +1,9 @@
 ---
 name: analyze
 description: >-
+  Use only when the project contains a Maxa AI Specification (a folder
+  with `maxa-spec.yaml`, or `project.yaml` declaring
+  `bundle_format_version`), or when the user mentions a Maxa spec.
   Produce business deliverables grounded in the Maxa AI Specification —
   risk registers, gap analyses, business specifications, requirements
   documents, stakeholder briefs, data readiness reviews, or project
