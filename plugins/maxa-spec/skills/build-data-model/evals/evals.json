@@ -1,5 +1,5 @@
 {
-  "skill_name": "build-model",
+  "skill_name": "build-data-model",
   "fixture_path": "tests/fixtures/sap-finance-ai-specification",
   "evals": [
     {

@@ -1,0 +1,8 @@
+{
+  "name": "maxa-spec",
+  "description": "Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis — grounding Claude in real business understanding extracted from stakeholder discovery.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Maxa"
+  }
+}

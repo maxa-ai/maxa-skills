@@ -1,5 +1,5 @@
 {
-  "skill_name": "analyze",
+  "skill_name": "write-business-doc",
   "fixture_path": "tests/fixtures/sap-finance-ai-specification",
   "evals": [
     {

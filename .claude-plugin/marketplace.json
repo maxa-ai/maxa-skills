@@ -5,13 +5,16 @@
   },
   "plugins": [
     {
-      "name": "maxa-specs",
-      "source": "./plugins/maxa-specs",
+      "name": "maxa-spec",
+      "source": "./plugins/maxa-spec",
       "description": "Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis",
       "version": "0.2.0",
       "author": {
         "name": "Maxa"
       }
     }
-  ]
+  ],
+  "renames": {
+    "maxa-specs": "maxa-spec"
+  }
 }

@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contributing to the Maxa Copilot Skills marketplace.
+Thank you for your interest in contributing to the Maxa plugin marketplace.
 
 ## Getting started
 
@@ -34,7 +34,7 @@ plugins/<plugin-name>/
 
 ### Naming
 
-Plugin names use the `maxa-` prefix followed by a domain noun (e.g., `maxa-specs`). See [CLAUDE.md](CLAUDE.md) for the naming convention.
+Plugin names use the `maxa-` prefix followed by a domain noun (e.g., `maxa-spec`). See [CLAUDE.md](CLAUDE.md) for the naming convention and [skill-authoring.md](.claude/rules/skill-authoring.md) for skill names.
 
 ### Testing
 
@@ -53,8 +53,8 @@ Each skill should include `evals/evals.json` with test cases following the [skil
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). CI enforces this on pull requests.
 
 ```
-feat(maxa-specs): add source-system routing to build-model
-fix(maxa-specs): correct Implementation Checklist for GLAccount
+feat(maxa-spec): add source-system routing to build-data-model
+fix(maxa-spec): correct Implementation Checklist for GLAccount
 docs: update README with new plugin
 ```
 

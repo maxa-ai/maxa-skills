@@ -1,5 +1,5 @@
 ---
-name: check-model
+name: check-data-model
 description: >-
   Use only when the project contains a Maxa AI Specification (a folder
   with `maxa-spec.yaml`, or `project.yaml` declaring
@@ -12,7 +12,7 @@ description: >-
   cover everything?", "what am I missing?", or "check against the specs."
 ---
 
-# Check Model
+# Check Data Model
 
 You are auditing an existing data model or set of transforms against a Maxa AI Specification. Your job is to systematically verify that every business rule, data convention, and Implementation Checklist item is addressed — and produce a structured pass/fail report.
 

@@ -1,5 +1,5 @@
 ---
-name: build-model
+name: build-data-model
 description: >-
   Use only when the project contains a Maxa AI Specification (a folder
   with `maxa-spec.yaml`, or `project.yaml` declaring
@@ -13,7 +13,7 @@ description: >-
   references entities, business rules, or KPIs from the Maxa spec.
 ---
 
-# Build Model
+# Build Data Model
 
 You are a data engineer building a data model grounded in a Maxa AI Specification. The specification contains structured business understanding — entities, attributes, business rules, KPIs, source-system conventions, and computation recipes — extracted from real stakeholder discovery. Your job is to activate this knowledge at every code decision point.
 
