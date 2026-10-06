@@ -1,104 +1,91 @@
 ---
 type: scope_map
 title: Scope Map
-description: Maps 13 business processes to 25 business questions. Twelve of 13 processes are in scope; Cash Flow Reporting is out of scope as no business question references CF accounts.
+description: Maps VeloGroup's 10 business processes (6 operational, 6 financial, with 2 shared across both themes) to 27 business questions. Nine processes are in scope; one process (monthly data extraction) is out of scope because no business question references the extraction mechanism itself.
 confidence: high
-timestamp: 2026-07-15T16:00:00Z
-in_scope_count: 12
+in_scope_count: 9
 out_of_scope_count: 1
-questions_mapped: 25
-tags: [scope-map, process-mapping, question-coverage]
-sources:
-  - VeloGroup-Maxa-FPA-Workshop
-  - VeloGroup-Maxa-Project-Kick-Off
+questions_mapped: 27
+timestamp: "2026-10-05T20:33:03Z"
+tags: [scope-map, processes, questions]
 ---
 
 # Scope Map
 
 ## In-Scope Processes
 
-### Financial Transaction Flow (Revenue & COGS)
+### month_end_close
 - **Source**: [Operational Processes](/themes/operational-processes.md)
-- **Supporting questions**: Q010, Q012, Q013, Q016, Q018, Q019, Q021, Q022, Q023, Q024, Q025
+- **Supporting questions**: Q023
 
-### Financial Transaction Flow (OpEx)
+### financial_transaction_flow
 - **Source**: [Operational Processes](/themes/operational-processes.md)
-- **Supporting questions**: Q010, Q012, Q013, Q025
+- **Supporting questions**: Q001, Q002, Q003, Q006, Q007, Q009, Q010, Q011, Q012, Q013, Q016, Q017, Q018, Q019, Q020, Q021, Q024, Q025, Q026, Q027
 
-### Month-End Close
+### annual_budget_process
+- **Source**: [Operational Processes](/themes/operational-processes.md), [Financial Processes](/themes/financial-processes.md)
+- **Supporting questions**: Q002, Q010, Q011
+
+### master_data_governance
 - **Source**: [Operational Processes](/themes/operational-processes.md)
-- **Supporting questions**: Q003, Q006, Q014, Q015
+- **Supporting questions**: Q003, Q004, Q005, Q006, Q007, Q008, Q012, Q014, Q015, Q016, Q017, Q020, Q022, Q024, Q027
 
-### Data Extraction & Reporting
-- **Source**: [Operational Processes](/themes/operational-processes.md)
-- **Supporting questions**: Q006, Q014, Q015
+### budget_vs_actual_variance_analysis
+- **Source**: [Operational Processes](/themes/operational-processes.md), [Financial Processes](/themes/financial-processes.md)
+- **Supporting questions**: Q002, Q011
 
-### Annual Budget Process
-- **Source**: [Operational Processes](/themes/operational-processes.md)
-- **Supporting questions**: Q005, Q010, Q013
-
-### Master Data Governance
-- **Source**: [Operational Processes](/themes/operational-processes.md)
-- **Supporting questions**: Q007, Q008, Q009, Q011, Q017, Q022
-
-### Chart of Accounts & P&L Hierarchy
+### pl_consolidation_reporting
 - **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Supporting questions**: Q002, Q012, Q023, Q025
+- **Supporting questions**: Q001, Q002, Q007, Q008, Q009, Q013, Q018, Q019, Q021, Q025, Q026, Q027
 
-### Month-End Close Process
+### fx_handling
 - **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Supporting questions**: Q003, Q006, Q014, Q015
+- **Supporting questions**: Q012
 
-### P&L Consolidation & Reporting
+### fiscal_calendar
 - **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Supporting questions**: Q014, Q015
+- **Supporting questions**: Q017, Q018
 
-### Budget vs Actual Process
+### cost_allocation
 - **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Supporting questions**: Q005, Q013
-
-### Fiscal Calendar
-- **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Supporting questions**: Q001, Q004, Q018, Q020, Q024
-
-### Currency & FX Handling
-- **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Supporting questions**: Q004
+- **Supporting questions**: Q024
 
 ## Out-of-Scope Processes
 
-### Cash Flow Reporting
-- **Source**: [Financial Processes](/themes/financial-processes.md)
-- **Reason**: None of the 25 business questions reference CF accounts. Medium priority (UC-05). Available if Phase 1 scope expands.
+### monthly_data_extraction
+- **Source**: [Operational Processes](/themes/operational-processes.md)
+- **Reason**: No business question references the CSV extraction mechanism, row count validation, or IT delivery of files to the FP&A team. All 27 questions ask about data values, metrics, and entities produced upstream in SAP or computed in reporting — not about the batch extraction step that transfers data between systems.
 
 ## Question-to-Process Map
 
 | Question | Processes | Reasoning |
-|----------|-----------|-----------|
-| Q001 | Fiscal Calendar | Fiscal year-end = Dec 31 |
-| Q002 | Chart of Accounts | GL account count = 21 |
-| Q003 | Month-End Close | Close duration = 5 days (target 3) |
-| Q004 | Fiscal Calendar, Currency/FX | Reporting currency = USD |
-| Q005 | Budget Process | Budget cycle = 8 weeks |
-| Q006 | Month-End Close, Data Extraction | SAP extraction = ~2 hours |
-| Q007 | Master Data Governance | Customer count = 53 |
-| Q008 | Master Data Governance | Product count = 35 |
-| Q009 | Master Data Governance | Profit center count = 37 |
-| Q010 | Transaction Flows, Budget | Total transactions = 167,136 |
-| Q011 | Master Data Governance | US customers = 44 |
-| Q012 | Transaction Flows, Chart of Accounts | COGS share = ~75% |
-| Q013 | Transaction Flows, Budget | Budget/Actual split = 61%/39% |
-| Q014 | Close, Extraction, Consolidation | Time savings = 2 days/month |
-| Q015 | Close, Extraction, Consolidation | P&L build time = ≥6 hours/month |
-| Q016 | Revenue Transaction Flow, MDG | Speciality share = ~66% |
-| Q017 | Master Data Governance | Highest price = M550 at $4,999 |
-| Q018 | Transaction Flows, Fiscal Calendar | YoY volume change |
-| Q019 | Revenue Transaction Flow, MDG | E-bike growth = ~40% |
-| Q020 | Fiscal Calendar, Transaction Flow | Data start = April 2018 |
-| Q021 | Transaction Flows, MDG | Speciality vs Large = 66% vs 31% |
-| Q022 | Transaction Flow, MDG | Product line shares |
-| Q023 | Transaction Flow, Chart of Accounts | Concentration threshold = 15% |
-| Q024 | Transaction Flows, Fiscal Calendar | Highest volume year = 2019 |
-| Q025 | Transaction Flows, Chart of Accounts | Dimensional grain rules |
+|---|---|---|
+| Q001 | financial_transaction_flow, pl_consolidation_reporting | Gross Margin % requires actual revenue and COGS transactions (produced by transaction flow) and the P&L hierarchy that defines Net Revenue and Gross Margin nodes (consolidation reporting) |
+| Q002 | financial_transaction_flow, annual_budget_process, budget_vs_actual_variance_analysis, pl_consolidation_reporting | BvA Net Income variance requires actual transactions, budget plan data, the version-tagged BvA framework, and the full P&L hierarchy to roll up to Net Income |
+| Q003 | financial_transaction_flow, master_data_governance | Cruise transaction share requires counting financial transactions filtered by product category — the product category classification is governed by master data |
+| Q004 | master_data_governance | Total customer count (53) is a property of customer master records maintained by master data governance |
+| Q005 | master_data_governance | Active profit center count (37) is a property of profit center master records maintained by master data governance |
+| Q006 | financial_transaction_flow, master_data_governance | Speciality (Z1) transaction share requires transaction counts filtered by customer segment type — the Z1/Z2/Z3 classification is maintained in master data |
+| Q007 | financial_transaction_flow, pl_consolidation_reporting, master_data_governance | Youth profitability requires isolating revenue and COGS transactions for Youth profit centers (master data), computing Gross Margin via the P&L hierarchy, and rolling up through the P&L consolidation structure |
+| Q008 | master_data_governance, pl_consolidation_reporting | GL account count (21) is maintained by master data governance; the specific 21-account chart of accounts structure is defined by P&L consolidation reporting |
+| Q009 | financial_transaction_flow, pl_consolidation_reporting | COGS transaction share (~75%) requires counting transactions filtered by GL account FPA1/020, which is defined and placed in the P&L hierarchy by consolidation reporting |
+| Q010 | financial_transaction_flow, annual_budget_process | Total transaction count (167,136) spans actual transactions (financial transaction flow) and budget transactions (annual budget process) |
+| Q011 | financial_transaction_flow, annual_budget_process, budget_vs_actual_variance_analysis | The 102,380 / 64,756 budget vs actual split requires both transaction sets and the version tagging (Actual vs Budget) defined by the BvA process |
+| Q012 | financial_transaction_flow, master_data_governance, fx_handling | US vs Canada revenue split requires revenue transactions, customer geography from master data, and the USD pre-conversion that fx_handling performs so CAD transactions are comparable |
+| Q013 | financial_transaction_flow, pl_consolidation_reporting | COGS ratio (COGS / Net Revenue) is computed from actual transactions using GL accounts placed in the hierarchy by P&L consolidation reporting |
+| Q014 | master_data_governance | Product count (35) is a property of the product master records maintained by master data governance |
+| Q015 | master_data_governance | Highest list price is an attribute of product master records; product pricing is set during the master data setup step |
+| Q016 | financial_transaction_flow, master_data_governance | Customer concentration (>15% threshold) requires aggregating revenue transactions by individual customer — customer identity and classification are maintained by master data governance |
+| Q017 | financial_transaction_flow, master_data_governance, fiscal_calendar | Revenue trend by product line (2018-2021) requires transactions tagged by product category (master data) and organized into the calendar-year monthly periods defined by fiscal calendar |
+| Q018 | financial_transaction_flow, pl_consolidation_reporting, fiscal_calendar | Monthly Gross Margin trend with YoY comparison requires the GL hierarchy for Gross Margin computation (consolidation), actual transactions, and the monthly period structure defined by fiscal calendar |
+| Q019 | financial_transaction_flow, pl_consolidation_reporting | Gross Revenue transaction count (~30,724) requires filtering transactions to GL account FPA1/022, which is defined within the P&L hierarchy |
+| Q020 | financial_transaction_flow, master_data_governance | Profit center revenue contribution requires aggregating revenue transactions grouped by profit center, whose identities and hierarchy placement are maintained in master data |
+| Q021 | financial_transaction_flow, pl_consolidation_reporting | OpEx split by Building vs Employee requires summing transactions under FPA1/024 and FPA1/026 hierarchy nodes defined by P&L consolidation reporting |
+| Q022 | master_data_governance | M550 list price ($4,999) is an attribute of the product master record maintained by master data governance |
+| Q023 | month_end_close | The 5-business-day SLA is a metric produced by and measured within the month-end close process — the question asks directly about a lifecycle metric of that process |
+| Q024 | financial_transaction_flow, master_data_governance, cost_allocation | Identifying profit centers with unassigned OpEx requires querying transactions where customer and product are the unassigned sentinel value — a posting pattern produced because cost allocation distributes shared costs at profit center level only, without customer/product dimension |
+| Q025 | financial_transaction_flow, pl_consolidation_reporting | Net Income requires rolling up all actual transactions through the full P&L hierarchy from leaf accounts to FPA1/08 (Net Income node) defined by P&L consolidation |
+| Q026 | financial_transaction_flow, pl_consolidation_reporting | EBIT/Operating Income (FPA1/016) requires computing Net Revenue minus COGS minus OpEx using actual transactions and the P&L hierarchy |
+| Q027 | financial_transaction_flow, master_data_governance, pl_consolidation_reporting | Gross Margin by customer segment requires joining transactions to customer segment (master data), filtering to Gross Margin GL accounts (P&L hierarchy), and aggregating by Z1/Z2/Z3 segment |
 
-All 25 questions are mapped to at least one in-scope process. See [Business Questions](/reference/business-questions.md) for full question details.
+See [Business Questions](/reference/business-questions.md) for the full question text and answers, and [Modeling Decisions](/modeling-decisions.md) for the entity model that supports these processes.

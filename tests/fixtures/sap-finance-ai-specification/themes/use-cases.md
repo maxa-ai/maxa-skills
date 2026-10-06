@@ -1,103 +1,134 @@
 ---
-type: use_cases
+type: business_domain
 title: Use Cases
-description: Seven prioritized use cases for the VeloGroup FP&A analytics platform, from monthly P&L reporting through customer profitability ranking, with stakeholder attribution and current-state pain points.
+description: Seven formalized use cases for VeloGroup's FP&A analytics platform, prioritized High (UC1-UC3), Medium (UC4-UC6), or Low/Phase 2 (UC7), covering P&L reporting, variance analysis, revenue breakdown, gross margin analysis, cash flow, OpEx analysis, and customer profitability.
 confidence: high
-timestamp: 2026-07-15T16:00:00Z
-tags: [use-cases, p-and-l, variance-analysis, profitability, drill-down, self-service]
+timestamp: "2026-10-05T20:11:39Z"
+tags: [use-cases, phase-1, priorities]
 sources:
-  - VeloGroup-Maxa-FPA-Workshop
-  - VeloGroup-Maxa-Project-Kick-Off
+  - VeloGroup-Maxa-FPA-Workshop.md
+  - VeloGroup-Maxa-Project-Kick-Off.md
 ---
 
 # Use Cases
 
-## Use Case Summary
-
-| ID | Use Case | Priority | Status | Key Stakeholder | Current Pain |
-|----|----------|----------|--------|-----------------|-------------|
-| UC-01 | Monthly P&L by Profit Center | High | Active | Stefan, Karen, Priya | 6+ hours/month manual build |
-| UC-02 | Budget vs Actual Variance with Drill-Down | High | Active | Stefan, Karen | 10-15 hours/month; 1 hour per ad-hoc question |
-| UC-03 | Revenue by Product Line & Customer Segment | High | Active | Stefan, Karen | 1 hour manual cross-tabulation |
-| UC-04 | Gross Margin Analysis by Product | Medium | Active | Stefan, Karen | Cannot isolate product profitability |
-| UC-05 | Cash Flow Trending (Indirect) | Medium | Active | Karen | — |
-| UC-06 | OpEx Analysis by Category | Medium | Active | Stefan, Karen | — |
-| UC-07 | Customer Profitability Ranking | Low | Deferred | Stefan, Karen | Requires cost allocation (Phase 2) |
-
 ## UC-01: Monthly P&L by Profit Center
 
-**Priority:** High | **Status:** Active (Phase 1)
+| Field | Value |
+|---|---|
+| **Priority** | High |
+| **Status** | Active |
+| **Description** | Generate a standard income statement for any profit center or group of profit centers, for any month or date range |
+| **Stakeholders** | Stefan Richter (CFO), Karen Liu (VP FP&A), Priya Sharma (Sr. Analyst) |
+| **Current Pain Points** | Takes Priya at least 6 hours/month; pivot tables rebuilt from scratch each month; Excel crashes on the 167K-row CSV |
 
-Generate a standard income statement for any profit center or group of profit centers, for any month or date range. Priya builds one P&L per product line group (Cruise, Mountain, Racing, Youth) plus consolidated company-wide P&L — at least 6 hours per month, all manual.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[238]
+> {"speaker": "Amélie Théorêt", "timestamp": "42:07", "quote": "Use Case 1 — Monthly P&L by profit center. Generate a standard income statement for any profit center or group of profit centers, for any month or date range."}
 
-**Entities Involved:** [FinancialTransaction](/entities/financial-transaction.md), [GLAccount](/entities/gl-account.md), [ProfitCenter](/entities/profit-center.md)
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[241]
+> {"speaker": "Priya Sharma", "timestamp": "42:28", "quote": "At least six hours per month for the full set. I build one P&L per product line group — Cruise, Mountain, Racing, Youth — plus the consolidated company-wide P&L. It's all manual. Copy the data, filter, pivot, format, repeat."}
+
+---
 
 ## UC-02: Budget vs Actual Variance Analysis with Drill-Down
 
-**Priority:** High | **Status:** Active (Phase 1)
+| Field | Value |
+|---|---|
+| **Priority** | High |
+| **Status** | Active |
+| **Description** | Compare actual results to budget at every level of the P&L and across all dimensions, with both dollar variance and percentage variance side by side |
+| **Stakeholders** | Stefan Richter (CFO), Karen Liu (VP FP&A) |
+| **Current Pain Points** | Entirely manual Excel rebuild each month; cross-dimensional drill-down is one dimension at a time; each ad hoc variance question takes ~1 hour |
 
-Compare actual results to budget at every level of the P&L and across all dimensions. Show both dollar variance and percentage variance. Enable drill-down from Net Income through Gross Margin to individual leaf accounts, and across product line, customer type, and profit center.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[244]
+> {"speaker": "Karen Liu", "timestamp": "43:03", "quote": "High. And I want both dollar variance and percentage variance side by side. A $50,000 variance in Gross Revenue means something different than a $50,000 variance in Travel expense."}
 
-Source: VeloGroup-Maxa-FPA-Workshop.md, Location: Workshop, Karen Liu, 18:22
-> "In theory, yes. In practice, cross-dimensional variance analysis in Excel is painful. I can do it for one dimension at a time. If Stefan asks 'why is Gross Margin off budget in the Cruise line?' I have to go back to the raw data, filter for Cruise profit centers, compare budget to actual for each account, and try to find the story. That takes an hour."
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[263]
+> {"speaker": "Karen Liu", "timestamp": "45:50", "quote": "All dimensions. I want to start at Net Income, see the budget vs actual variance. Then drill into Gross Margin, see the variance there. Then slice by product line — is the variance coming from Cruise or Mountain? Then by customer type — is it a Speciality problem or a Large problem? Then by individual profit center. Full cross-dimensional navigation."}
 
-**Entities Involved:** [FinancialTransaction](/entities/financial-transaction.md), [GLAccount](/entities/gl-account.md), [ProfitCenter](/entities/profit-center.md), [Customer](/entities/customer.md), [Product](/entities/product.md)
+### ROI Impact
+
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[258]
+> {"speaker": "Karen Liu", "timestamp": "45:10", "quote": "Honestly, if I could get UC1 and UC2 working first, that alone would save me two days a month. That's the ROI case right there — twenty-four analyst days per year returned to higher-value work."}
+
+---
 
 ## UC-03: Revenue Breakdown by Product Line and Customer Segment
 
-**Priority:** High | **Status:** Active (Phase 1)
+| Field | Value |
+|---|---|
+| **Priority** | High |
+| **Status** | Active |
+| **Description** | Visualize how revenue distributes across Cruise, Mountain, Racing, Youth and across Large, Speciality, Medium |
+| **Stakeholders** | Karen Liu, Stefan Richter |
+| **Current Pain Points** | Manual cross-tabulation takes ~1 hour |
 
-Visualize how revenue distributes across Cruise, Mountain, Racing, Youth, and across Large, Speciality, Medium customer segments. Cross-reference product categorization with customer type.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[259]
+> {"speaker": "Danny Le", "timestamp": "45:24", "quote": "That's compelling. And the data model we build for UC1 and UC2 naturally supports UC3 as well — it's the same dimensional structure, just different slicing."}
 
-**Entities Involved:** [FinancialTransaction](/entities/financial-transaction.md), [GLAccount](/entities/gl-account.md), [Product](/entities/product.md), [Customer](/entities/customer.md)
+---
 
 ## UC-04: Gross Margin Analysis by Product
 
-**Priority:** Medium | **Status:** Active (Phase 1)
+| Field | Value |
+|---|---|
+| **Priority** | Medium |
+| **Status** | Active |
+| **Description** | Product-level profitability — which products have the highest and lowest margins, matching revenue and COGS at the individual product level |
+| **Stakeholders** | Karen Liu, Stefan Richter |
 
-Product-level profitability — which products have the highest and lowest margins. The Youth bike line profitability debate has been unresolved for 2 years.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[249]
+> {"speaker": "Karen Liu", "timestamp": "44:02", "quote": "Medium priority. Important for strategic product decisions, but I can live without it in Phase 1 if we get the top three working."}
 
-**Entities Involved:** [FinancialTransaction](/entities/financial-transaction.md), [GLAccount](/entities/gl-account.md), [Product](/entities/product.md), [ProfitCenter](/entities/profit-center.md)
+---
 
 ## UC-05: Cash Flow Trending (Indirect Method)
 
-**Priority:** Medium | **Status:** Active (Phase 1)
+| Field | Value |
+|---|---|
+| **Priority** | Medium |
+| **Status** | Active |
+| **Description** | Cash flow analysis using the indirect method, leveraging CF_I, CF_CFO, and CF_D accounts |
 
-Trend analysis of cash flow using the indirect method. Leverages CF_I, CF_CFO, CF_D accounts documented in the [GLAccount](/entities/gl-account.md) entity.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[251]
+> {"speaker": "Karen Liu", "timestamp": "44:16", "quote": "Medium priority. We have the CF accounts — CF_I, CF_CFO, CF_D — so the data supports it. But it's not the most frequently requested analysis."}
+
+---
 
 ## UC-06: Operating Expense Analysis by Category
 
-**Priority:** Medium | **Status:** Active (Phase 1)
+| Field | Value |
+|---|---|
+| **Priority** | Medium |
+| **Status** | Active |
+| **Description** | Building vs Employee expense breakdown, trends in Payroll, Travel, Utilities |
+| **Stakeholders** | Stefan Richter |
 
-Building vs Employee expense breakdown. Trends in Payroll, Travel, Utilities. Stefan reviews this quarterly.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[253]
+> {"speaker": "Stefan Richter", "timestamp": "44:37", "quote": "Medium. I look at this quarterly, not monthly. Important but not urgent."}
 
-**Entities Involved:** [FinancialTransaction](/entities/financial-transaction.md), [GLAccount](/entities/gl-account.md), [ProfitCenter](/entities/profit-center.md)
+---
 
 ## UC-07: Customer Profitability Ranking
 
-**Priority:** Low | **Status:** Deferred (Phase 2)
+| Field | Value |
+|---|---|
+| **Priority** | Low |
+| **Status** | Deferred (Phase 2) |
+| **Description** | Rank customers by their contribution to gross margin; requires allocation of shared costs |
+| **Stakeholders** | Karen Liu, Stefan Richter |
 
-Rank customers by contribution to gross margin. Requires cost allocation of shared costs — a "whole separate exercise" per Karen Liu. Partially answerable at gross margin level in Phase 1.
+Source: VeloGroup-Maxa-FPA-Workshop.md, Location: $.values.messages[256]
+> {"speaker": "Karen Liu", "timestamp": "44:52", "quote": "Low priority. Phase 2 candidate. The data supports it — we track revenue and COGS at the customer level — but computing true customer profitability requires some allocation of shared costs, which is a whole separate exercise."}
 
-**Entities Involved:** [FinancialTransaction](/entities/financial-transaction.md), [GLAccount](/entities/gl-account.md), [Customer](/entities/customer.md)
+---
 
-## Cross-Cutting Business Questions
+## Use Case Priority Summary
 
-| Question | Relates To | Phase 1 Answerable? |
-|----------|-----------|---------------------|
-| Channel Profitability — Speciality vs Large | UC-07 / UC-04 | Partially (gross margin level) |
-| Youth Bike Line Profitability | UC-04 | Yes (gross margin level) |
-| Customer Concentration Risk (<15% per customer) | UC-03 | Yes |
-| COVID Impact Analysis (2020 monthly trend) | UC-01 | Yes |
-| E-Bike Revenue Growth (~40% YoY) | UC-03 | Yes |
+| Priority | Use Cases | Phase |
+|---|---|---|
+| High | UC-01, UC-02, UC-03 | Phase 1 |
+| Medium | UC-04, UC-05, UC-06 | Phase 1 (if time) |
+| Low | UC-07 | Phase 2 |
 
-See [Business Questions](/reference/business-questions.md) for the full set of 22 validated business questions.
-
-## ROI Case
-
-Source: VeloGroup-Maxa-FPA-Workshop.md, Location: Workshop, Karen Liu, 45:10
-> "Honestly, if I could get UC1 and UC2 working first, that alone would save me two days a month. That's the ROI case right there — twenty-four analyst days per year returned to higher-value work."
-
-## Drill-Down Requirements
-
-All use cases require dimensional drill-down capability across P&L hierarchy, product line, customer segment, individual profit center, individual customer, and individual product.
+**Key Insight:** UC1 and UC2 together save ~24 analyst-days/year and enable a 3-day close (from 5-day). UC3 is naturally supported by the same dimensional model used for UC1/UC2.

@@ -1,91 +1,92 @@
 ---
 type: follow_up_questions
 title: Follow-Up Questions
-description: Aggregated follow-up questions from all source themes representing critical missing information that could affect data model accuracy or analytics capability.
+description: Critical missing information identified across theme extraction, aggregated with impact and current-state context for follow-up with VeloGroup stakeholders.
 confidence: high
-timestamp: 2026-07-15T16:00:00Z
-tags: [ai_specification, follow-up-questions, gaps]
-sources:
-  - VeloGroup-Maxa-FPA-Workshop
-  - VeloGroup-Maxa-Project-Kick-Off
+tags: [bundle_metadata, follow_up_questions]
+timestamp: "2026-10-05T20:33:03Z"
 ---
 
 # Follow-Up Questions
 
-## High Impact
+## FQ-01: European Customer Count
 
-### 1. What is the cost allocation methodology used for shared costs across profit centers?
+**Question:** How many European customers/entities exist, and are they in scope for analytics?
 
-**Impact:** Affects profit center-level P&L accuracy and product line profitability analysis (UC-04, UC-07).
-**Current State:** Cost allocations mentioned as part of the month-end close process but methodology is undocumented.
-**Related:** [ProfitCenter](/entities/profit-center.md), [FinancialTransaction](/entities/financial-transaction.md)
+**Impact:** Determines whether EUR currency and European legal entities need to be modeled in this or a future phase.
 
-### 2. Are there intercompany transactions between VeloGroup entities requiring elimination in consolidation?
+**Current State:** NOT_MENTIONED. Stefan Richter referenced "some European presence starting to form" but no customer count, revenue share, or entity list was provided.
 
-**Impact:** Required for accurate consolidated P&L — intercompany eliminations affect Gross Margin and Net Income.
-**Current State:** Not mentioned in either transcript. VeloGroup appears to be single-entity for Phase 1 scope.
+**Related:** [Business Domain](/themes/business-domain.md)
+
+---
+
+## FQ-02: Cost Allocation Methodology
+
+**Question:** What is the cost allocation methodology used across profit centers (e.g., headcount-based, revenue-based, square-footage-based)?
+
+**Impact:** Determines profit center P&L accuracy and contribution margin calculations; blocks cross-dimensional profitability analysis and the Youth-line profitability question. See [Known Gap G001](/known-gaps.md) for full detail.
+
+**Current State:** NOT_MENTIONED. Statistical accounts (headcount, square footage, capacity) exist in SAP for allocation purposes, but their use was not explored.
+
+**Related:** [Financial Processes](/themes/financial-processes.md), [Known Gaps](/known-gaps.md)
+
+---
+
+## FQ-03: Revenue Recognition Point
+
+**Question:** At what point is revenue recognized — at shipment, delivery, or invoice?
+
+**Impact:** Required for period-accurate revenue reporting and ensuring consistency with standard accounting practice.
+
+**Current State:** NOT_MENTIONED in either evidence source.
+
 **Related:** [Financial Processes](/themes/financial-processes.md)
 
-### 3. What is the revenue recognition policy — is revenue recognized at shipment, delivery, or invoice?
+---
 
-**Impact:** Determines when revenue appears in the P&L and affects period-end accruals.
-**Current State:** Not mentioned. Karen Liu says "sale fulfilled" triggers posting, suggesting shipment-based recognition.
-**Related:** [FinancialTransaction](/entities/financial-transaction.md)
+## FQ-04: FX Rate Methodology
 
-## Medium Impact
+**Question:** What FX posting rate methodology is used — spot rate, average rate, or month-end rate?
 
-### 4. What is the exact US/Canada revenue split?
+**Impact:** Spot vs. average vs. month-end rate affects FX variance analysis and period accuracy for Canadian-dollar transactions converted to USD.
 
-**Impact:** Geographic revenue modeling precision.
-**Current State:** Karen states "roughly 85-15, but I'd need to pull the exact number" — approximate value only.
-**Related:** [Customer](/entities/customer.md), [Business Domain](/themes/business-domain.md)
+**Current State:** NOT_MENTIONED. Stakeholders used the term "posting rate" without further clarification, and no separate FX rate table exists in the data export.
 
-### 5. What is the exact e-bike revenue growth rate?
+**Related:** [Financial Processes](/themes/financial-processes.md), [Fiscal Calendar](/reference/fiscal-calendar.md)
 
-**Impact:** Product line trend analysis and strategic investment decisions.
-**Current State:** Stefan says "around 40%", Karen hedges. Medium confidence.
-**Related:** [Product](/entities/product.md)
+---
 
-### 6. What FX rate type is used for CAD→USD conversion?
+## FQ-05: SAP Server Timezone
 
-**Impact:** Affects accuracy of converted amounts and period-end FX gain/loss calculations.
-**Current State:** Karen says "posting rate" but the specific type (spot, monthly average, month-end) is ambiguous.
-**Related:** [FiscalCalendar](/entities/fiscal-calendar.md), [Fiscal Calendar Reference](/reference/fiscal-calendar.md)
+**Question:** What is the IANA timezone of the SAP server (e.g., America/New_York, UTC)?
 
-### 7. Is the Net Income → EBIT relationship direct, or are there intermediate items?
+**Impact:** Required for correct timestamp handling in staging — SAP stores timestamps in server local time without timezone metadata.
 
-**Impact:** P&L hierarchy completeness. If Net Income = EBIT, unusual for a company with debt or taxes.
-**Current State:** Hierarchy shows direct parent-child with no intermediate nodes documented.
-**Related:** [GLAccount](/entities/gl-account.md), [Financial KPIs](/kpis/financial-kpis.md)
+**Current State:** NOT_MENTIONED in either evidence source.
 
-### 8. What depreciation methodology does VeloGroup use?
+**Related:** [Source Systems](/themes/source-systems.md)
 
-**Impact:** Significant non-cash expense affecting both P&L and Cash Flow (CF_D).
-**Current State:** Only described as "adjusting entries for things like depreciation" — no methodology specified.
-**Related:** [Financial Processes](/themes/financial-processes.md)
+---
 
-## Low Impact
+## FQ-06: Large-Tier Customer IDs
 
-### 9. What specific cash flow metrics does Karen track using the indirect method?
+**Question:** What are the CUSTOMERID values for Large-tier customers (Skymart Corp, Bigmart, CostClub, etc.)?
 
-**Impact:** Data model requirements for UC-05 (Cash Flow Trending).
-**Current State:** Three CF accounts exist (CF_I, CF_CFO, CF_D) but no specific KPIs defined.
-**Related:** [GLAccount](/entities/gl-account.md)
+**Impact:** Only Speciality and Medium customer IDs are known (LACU_S02, 1000153); Large-tier IDs are needed to establish the complete ID pattern space for data discovery.
 
-### 10. What cost allocation methodology would be used for customer profitability (UC-07)?
+**Current State:** NOT_MENTIONED — Large-tier customers are named but not keyed.
 
-**Impact:** Phase 2 customer profitability ranking.
-**Current State:** Karen describes it as "a whole separate exercise" — no methodology specified.
-**Related:** [Customer](/entities/customer.md), [Use Cases](/themes/use-cases.md)
+**Related:** [Entity Examples](/reference/entity-examples.md)
 
-### 11. Which year had the highest transaction volume?
+---
 
-**Impact:** Data scope understanding — 2019 appears to be the baseline year (~66,740 transactions).
-**Current State:** Known from data (2019) but not explicitly confirmed as baseline.
-**Related:** [FiscalCalendar](/entities/fiscal-calendar.md)
+## FQ-07: Customer and Profit Center Hierarchy Node IDs
 
-### 12. If European operations expand, will EUR-denominated transactions require additional FX handling?
+**Question:** What are representative hierarchy node IDs (HIERARCHYID values) for the Customer Hierarchy and Profit Center Hierarchy tables?
 
-**Impact:** Phase 2+ may require EUR functional currency support.
-**Current State:** Stefan mentions "European presence starting to form" but scope is USD/CAD only.
-**Related:** [Fiscal Calendar Reference](/reference/fiscal-calendar.md)
+**Impact:** Transcripts describe these hierarchies using descriptive names only (e.g., "US Division," "Cruise") rather than actual system node IDs, which are needed for data discovery mapping.
+
+**Current State:** NOT_MENTIONED for specific node IDs; row counts (56 for Customer Hierarchy, 60 for Profit Center Hierarchy) are known.
+
+**Related:** [Entity Examples](/reference/entity-examples.md)
