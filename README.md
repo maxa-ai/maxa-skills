@@ -1,4 +1,4 @@
-# maxa-copilot-skills
+# maxa-skills
 
 Public Claude Code plugin marketplace for the Maxa organization.
 
@@ -15,7 +15,7 @@ Public Claude Code plugin marketplace for the Maxa organization.
 /plugin marketplace add maxa-ai/maxa-copilot-skills
 
 # Install a plugin
-/plugin install maxa-spec@maxa-copilot-skills
+/plugin install maxa-spec@maxa-skills
 ```
 
 ## Usage
