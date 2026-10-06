@@ -1,6 +1,9 @@
 ---
 name: build-model
 description: >-
+  Use only when the project contains a Maxa AI Specification (a folder
+  with `maxa-spec.yaml`, or `project.yaml` declaring
+  `bundle_format_version`), or when the user mentions a Maxa spec.
   Build data models, write SQL/dbt transforms, or implement KPIs using
   the Maxa AI Specification. Use when designing entity schemas,
   writing transforms, implementing financial calculations, or building
