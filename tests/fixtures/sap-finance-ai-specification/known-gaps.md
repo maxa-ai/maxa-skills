@@ -1,75 +1,44 @@
 ---
 type: known_gaps
 title: Known Gaps
-description: Documented gaps in the VeloGroup business knowledge base — areas where extraction is incomplete, data sync gaps exist, or business information was not provided by stakeholders.
+description: Two chapter-level gaps identified across VeloGroup's FP&A analytics discovery - cost allocation methodology and balance sheet/cash flow account structures.
 confidence: high
-timestamp: 2026-07-15T16:00:00Z
-tags: [ai_specification, known-gaps, completeness]
-sources:
-  - VeloGroup-Maxa-FPA-Workshop
-  - VeloGroup-Maxa-Project-Kick-Off
+tags: [bundle_metadata, known_gaps]
+timestamp: "2026-10-05T20:33:03Z"
 ---
 
 # Known Gaps
 
-## Data Completeness Gaps
+## G001: Undocumented Cost Allocation Methodology Across Profit Centers
 
-### 1. 37th Profit Center Unaccounted
+**Area:** Financial, Cost Accounting
 
-**Impact:** Low
-**Description:** Marcus Weber states 37 profit centers in the master data, but the documented structure accounts for only 36: US Division (28) + Global (3) + Logistics (4) + Year-end (1) = 36. The 37th profit center is unidentified.
-**Mitigation:** Will be resolved during data profiling when the actual [ProfitCenter](/entities/profit-center.md) master data is loaded.
+The methodology by which shared costs are allocated across VeloGroup's 37 profit centers is entirely absent from the record — no allocation drivers, allocation flows, or rules were discussed. Karen Liu confirmed cost allocations happen during month-end close and that statistical accounts (headcount, square footage, capacity) exist for allocation purposes, but how they are used was never explored.
 
-### 2. Cash Flow Accounts Limited to Three
+The [Financial Processes](/themes/financial-processes.md) theme documents cost allocation as a named process with timing (days 1-3 of close), scope (shared costs across profit centers), and owner (Karen Liu), but the method itself is NOT_MENTIONED. [Project Scope](/themes/project-scope.md) establishes cross-dimensional profitability analysis as a high-priority objective (OBJ-05) and a sliceable profitability dashboard as an explicit deliverable (DEL-05). The CFO's two-year-old question — whether the Youth bike line is profitable on its own — is structurally unanswerable without understanding how shared costs from Global (ZG) and Logistics (Z_LOG) profit centers reach product-line profit centers in the US Division.
 
-**Impact:** Low
-**Description:** Only three CF accounts exist: CF_I (Cash Flow Statement), CF_CFO (Cash Flow from Operating Activities), CF_D (Depreciation). A complete indirect method cash flow statement would typically include Cash Flow from Investing Activities and Cash Flow from Financing Activities.
-**Mitigation:** UC-05 (Cash Flow Trending) is medium priority. The partial view is sufficient for Phase 1.
+**Blocks:** OBJ-05, UC-04, DEL-05
 
-## Undocumented Business Information
+**Impact:** Cross-dimensional profitability analysis (OBJ-05) and the profitability dashboard sliceable by product line, profit center, and customer segment (DEL-05) depend on correctly attributed costs. Gross Margin Analysis by Product (UC-04) requires understanding how shared costs reach product-line profit centers. Without the allocation methodology, profit center P&Ls may misstate contribution, and the Youth-line profitability question remains unanswerable.
 
-### 3. Intercompany Transaction Handling
+**Priority:** High
 
-**Impact:** Medium
-**Description:** No discussion of intercompany transactions, eliminations, or transfer pricing in either transcript. VeloGroup has multi-entity structure (US Division, Global, Logistics) that could involve intercompany flows.
-**Mitigation:** VeloGroup appears to operate as a single entity for Phase 1 scope. Flagged as [follow-up question](/follow-up-questions.md).
+**Suggested Follow-Up:** Clarify with the VP of FP&A, who owns the allocation process and the statistical accounts that feed it: (1) What allocation methodology distributes shared costs across profit centers — headcount-based, revenue-based, square-footage-based, or a combination? (2) Which costs from Global (ZG) and Logistics (Z_LOG) profit centers are allocated to US Division profit centers, and what drivers determine the split? (3) How are the statistical accounts (headcount, square footage, capacity metrics) used as allocation inputs? (4) Does the SAP extract reflect post-allocation balances, or must the analytics platform replicate the allocation logic?
 
-### 4. Revenue Recognition Policy
+---
 
-**Impact:** Medium
-**Description:** Timing of revenue recognition (shipment, delivery, or invoice) was not discussed. Karen Liu mentions "sale fulfilled" as the trigger for posting but this is imprecise.
-**Mitigation:** Standard SAP FI revenue recognition applies. Flagged as [follow-up question](/follow-up-questions.md).
+## G002: Undocumented Balance Sheet and Cash Flow Account Structures
 
-### 5. Cost Allocation Methodology
+**Area:** Financial, Reporting Structure
 
-**Impact:** Medium
-**Description:** Cost allocations are mentioned as part of the month-end close process (Day 1-3 activities), but the specific methodology for allocating shared costs across profit centers was not described.
-**Mitigation:** Affects profit center-level P&L precision. Flagged as [follow-up question](/follow-up-questions.md).
+The P&L hierarchy is documented exhaustively (21 accounts, every node named with parent-child relationships), but the balance sheet accounts (asset and liability/equity types) and cash flow accounts (CF_I, CF_CFO, CF_D) have no documented hierarchy, no individual account listing, and no analytical structure. Karen Liu named three cash flow accounts in passing and noted that asset and liability/equity accounts "feed into the balance sheet view," but that is the entirety of the record.
 
-### 6. Depreciation Methodology
+The [Financial Processes](/themes/financial-processes.md) theme covers P&L consolidation in detail but contains zero balance sheet or cash flow account structure. [Financial KPIs](/kpis/financial-kpis.md) defines 11 KPIs — all P&L metrics — with no balance sheet or cash flow KPIs despite DEL-02 (balance sheet summary view) and DEL-03 (cash flow analysis) being explicit Phase 1 deliverables in [Project Scope](/themes/project-scope.md). Cash Flow Trending (UC-05) is an active medium-priority use case whose three named accounts lack hierarchy detail, calculation rules, and relationship to other account structures.
 
-**Impact:** Low
-**Description:** Depreciation is mentioned as an adjusting entry during month-end close and CF_D account exists, but the specific method (straight-line, declining balance, etc.) was not discussed.
-**Mitigation:** Will be evident from the GL posting patterns during data profiling.
+**Blocks:** DEL-02, DEL-03, UC-05
 
-### 7. FX Rate Type Ambiguity
+**Impact:** The balance sheet summary view (DEL-02) and cash flow analysis using the indirect method (DEL-03) are explicit Phase 1 deliverables with no documented account structure to build from. Cash Flow Trending (UC-05) is an active use case whose three named accounts (CF_I, CF_CFO, CF_D) lack hierarchy detail, calculation rules, and relationship to P&L and balance sheet nodes.
 
-**Impact:** Low
-**Description:** Karen says "posting rate" for CAD→USD conversion, but the specific rate type (spot rate at transaction date, monthly average, or month-end rate) is ambiguous.
-**Mitigation:** Single-currency USD output eliminates multi-currency complexity for Phase 1 analytics. The distinction only matters if FX gain/loss analysis is needed.
+**Priority:** High
 
-## Controls and Audit Gaps
-
-### 8. No Controls Framework Beyond Budget Validation
-
-**Impact:** Low (for Phase 1 FP&A analytics)
-**Description:** The only explicit control gate documented is budget validation ("to the penny" reconciliation). No discussion of segregation of duties, approval workflows for journal entries, or audit trail requirements beyond what SAP enforces.
-**Mitigation:** Appropriate for Phase 1 FP&A analytics engagement. Should be noted for compliance-sensitive downstream use.
-
-## Net Income vs EBIT Hierarchy Question
-
-### 9. P&L Hierarchy Completeness
-
-**Impact:** Medium
-**Description:** The P&L hierarchy shows Net Income (FPA1/08) as the direct parent of EBIT (FPA1/09) with no intermediate nodes. If there are truly no items between them (interest expense, income tax), then Net Income = EBIT, which would be unusual for a company with debt or tax obligations. If intermediate nodes exist but were not discussed, the hierarchy is incomplete.
-**Mitigation:** Flagged as [follow-up question](/follow-up-questions.md). Will be resolved during data profiling when the complete [GLAccount](/entities/gl-account.md) hierarchy is loaded.
+**Suggested Follow-Up:** Clarify with the VP of FP&A and the SAP/IT Director, who respectively understand the reporting requirements and the SAP account structure: (1) What GL accounts exist under the Asset and Liabilities & Equity account types, and what is their parent-child hierarchy? (2) How does the cash flow hierarchy (CF_I, CF_CFO, CF_D) relate to the P&L and balance sheet accounts — what are the calculation rules for the indirect method? (3) What specific metrics and drill-down dimensions should the balance sheet summary view (DEL-02) support?

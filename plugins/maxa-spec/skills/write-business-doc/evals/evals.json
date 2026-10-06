@@ -73,7 +73,7 @@
           "type": "format"
         },
         {
-          "text": "Identifies the P&L hierarchy completeness gap (Net Income vs EBIT) as a risk",
+          "text": "Identifies the undocumented balance sheet and cash flow account structures as a risk",
           "type": "correctness"
         },
         {
@@ -120,13 +120,12 @@
     },
     {
       "id": 4,
-      "name": "stakeholder-brief-maxa-spec-yaml",
-      "fixture_path": "tests/fixtures/sap-finance-maxa-spec",
+      "name": "stakeholder-brief",
       "prompt": "Write a stakeholder brief for VeloGroup's FPA project from the Maxa spec.",
       "expected_output": "An MBA-lens stakeholder brief grounded in project scope, business domain, use cases, and expert observations",
       "assertions": [
         {
-          "text": "Locates the Maxa spec through maxa-spec.yaml and reads index.md",
+          "text": "Discovers the Maxa spec and reads index.md",
           "type": "procedural"
         },
         {

@@ -16,7 +16,7 @@
 
 **Amelie Theoret** *[01:32]*: Ha, I sense a story there. We'll dig into that.
 
-**Julien Tremblay** *[01:36]*: Looking forward to hearing it. I'm Julien Tremblay, Analytics Lead on the Maxa side. I'll be doing the hands-on work around data modeling, building out the analytics platform, working closely with Karen and Marcus on understanding the data and translating it into something actionable. Really looking forward to getting into the details.
+**Danny Le** *[01:36]*: Looking forward to hearing it. I'm Danny Le, Analytics Lead on the Maxa side. I'll be doing the hands-on work around data modeling, building out the analytics platform, working closely with Karen and Marcus on understanding the data and translating it into something actionable. Really looking forward to getting into the details.
 
 **Marcus Weber** *[01:55]*: And I'm Marcus Weber. I run the SAP landscape and IT infrastructure here at VeloGroup. Twelve years with the company, so I've been around since before we were even on SAP, which tells you something. I manage the whole SAP environment, integrations, data architecture, infrastructure. I'm basically the guy who knows where all the data lives and, unfortunately, where it tends to get stuck.
 
@@ -44,13 +44,13 @@
 
 **Karen Liu** *[04:38]*: Yes, so the month-end close is probably the biggest pain point for my team. The consolidation and reporting piece specifically. We're pulling data out of SAP, dumping it into Excel, and then manually consolidating across all our profit centers. Reconciling, checking for anomalies, formatting. That process alone takes about three days just for the P&L consolidation. Three days, every single month. And it's not like we have spare capacity, those are three days my analysts could be spending on actual strategic analysis instead of copy-pasting formulas.
 
-**Julien Tremblay** *[05:12]*: When you say consolidating across profit centers, how many profit centers are we talking about?
+**Danny Le** *[05:12]*: When you say consolidating across profit centers, how many profit centers are we talking about?
 
 **Karen Liu** *[05:17]*: Thirty-seven.
 
 **Marcus Weber** *[05:19]*: Thirty-seven active profit centers. Twenty-eight under the US Division, three under what we call the Global group, that's ZG in SAP, and then four under Logistics, which is Z_LOG.
 
-**Julien Tremblay** *[05:32]*: And each of those essentially has its own P&L that needs to roll up?
+**Danny Le** *[05:32]*: And each of those essentially has its own P&L that needs to roll up?
 
 **Karen Liu** *[05:36]*: Effectively, yes. And we need to see the data at multiple levels. Individual profit center, by product line, by division, consolidated total. The roll-up logic is in people's heads and in their Excel formulas, not in any kind of automated system.
 
@@ -68,17 +68,17 @@
 
 **Amelie Theoret** *[07:30]*: That's a great way to frame it. Danny, do you want to walk through the specific deliverables?
 
-**Julien Tremblay** *[07:36]*: Sure. Based on our pre-call conversations, here's what we're envisioning for deliverables. First and probably most important, a consolidated P&L dashboard with drill-down capability. You'd be able to start at the company-wide view and drill down into divisions, product lines, individual profit centers, customer segments.
+**Danny Le** *[07:36]*: Sure. Based on our pre-call conversations, here's what we're envisioning for deliverables. First and probably most important, a consolidated P&L dashboard with drill-down capability. You'd be able to start at the company-wide view and drill down into divisions, product lines, individual profit centers, customer segments.
 
 **Karen Liu** *[07:56]*: And by product line, you mean our four main lines? Cruise, Mountain, Racing, and Youth?
 
-**Julien Tremblay** *[08:02]*: Exactly. And by customer segment, we're talking about your three tiers?
+**Danny Le** *[08:02]*: Exactly. And by customer segment, we're talking about your three tiers?
 
 **Karen Liu** *[08:07]*: Yes. Z1, Z2, Z3 in SAP terms. Speciality, Large, and Medium. Speciality is our independent bike shops, the enthusiast retailers. Large is the big accounts, your Skymart Corp, Bigmart, CostClub. And Medium is, well, everything in between. Mid-size regional chains, that sort of thing.
 
 **Stefan Richter** *[08:28]*: The profitability by product line is critical. I want to stress that. We've been having an internal debate for, I don't know, two years now about whether the Youth bike line is actually profitable on its own or if it's essentially a loss leader that drives foot traffic and brand loyalty for our other lines. And the honest answer is, right now, we genuinely cannot answer that question with confidence. We can't isolate the costs properly.
 
-**Julien Tremblay** *[08:55]*: That's a perfect use case for what we're building. So beyond the P&L dashboard, the other deliverables we're targeting: a balance sheet summary view, cash flow analysis using the indirect method, budget versus actual comparison reports with variance drill-down, and then the profitability analysis sliceable by product line, profit center, and customer segment.
+**Danny Le** *[08:55]*: That's a perfect use case for what we're building. So beyond the P&L dashboard, the other deliverables we're targeting: a balance sheet summary view, cash flow analysis using the indirect method, budget versus actual comparison reports with variance drill-down, and then the profitability analysis sliceable by product line, profit center, and customer segment.
 
 **Stefan Richter** *[09:18]*: The budget versus actual is important. We go through an annual budget process, it takes months, and then once we have the budget, comparing it to actuals is... Karen?
 
@@ -88,15 +88,15 @@
 
 **Karen Liu** *[10:09]*: It would change my life. Only slightly exaggerating. If I could click on a variance and immediately see whether it's being driven by a specific product, a specific customer, a specific GL account, that would save me probably ten to fifteen hours a month.
 
-**Julien Tremblay** *[10:25]*: Let me ask about the P&L structure specifically. When you think about the key line items, what are the ones that matter most?
+**Danny Le** *[10:25]*: Let me ask about the P&L structure specifically. When you think about the key line items, what are the ones that matter most?
 
 **Karen Liu** *[10:32]*: Sure. So our top line is Gross Revenue, which in SAP maps to the hierarchy node FPA1/022. Below that we have Sales Deductions, that's FPA1/023, so your discounts, returns, customer allowances. Then COGS under FPA1/020. We look at margins at several levels going down through the P&L, all the way down to EBIT, which is FPA1/09, and ultimately Net Income at FPA1/08. Those hierarchy nodes are important because they define how the GL accounts roll up.
 
-**Julien Tremblay** *[11:05]*: And the account types? Marcus, you mentioned five types in our pre-call?
+**Danny Le** *[11:05]*: And the account types? Marcus, you mentioned five types in our pre-call?
 
 **Marcus Weber** *[11:10]*: Correct, five account types. Income, abbreviated INC. Expense, EXP. Assets, AST. Liabilities and Equity, LEQ. And then there's a Non-financial Income category, NFIN, which is a bit of a miscellaneous bucket for certain non-operating items.
 
-**Julien Tremblay** *[11:30]*: And total GL accounts?
+**Danny Le** *[11:30]*: And total GL accounts?
 
 **Marcus Weber** *[11:33]*: Twenty-one. It's a compact chart of accounts. Stefan made the decision years ago to keep it lean, which was smart. Some companies in our industry have hundreds of accounts and it becomes unmanageable.
 
@@ -106,13 +106,13 @@
 
 **Amelie Theoret** *[12:02]*: Good, this is all really valuable. Let's shift gears to scope definition. This is where we want to be very clear about what's in for Phase 1 and what we're deliberately deferring. Danny?
 
-**Julien Tremblay** *[12:15]*: Right. So for Phase 1, here's what we're proposing as in-scope. Data source: SAP FI financial data. The core data model is a star schema with FinancialTransactions as the central fact table surrounded by dimension tables. We'll cover both Actual and Budget data, so two versions. All four product lines: Cruise, Mountain, Racing, Youth. All three customer segments: Speciality, Large, Medium. All profit centers, US Division, Global, and Logistics. Date range: fiscal 2018 through 2021 data. Monthly reporting granularity.
+**Danny Le** *[12:15]*: Right. So for Phase 1, here's what we're proposing as in-scope. Data source: SAP FI financial data. The core data model is a star schema with FinancialTransactions as the central fact table surrounded by dimension tables. We'll cover both Actual and Budget data, so two versions. All four product lines: Cruise, Mountain, Racing, Youth. All three customer segments: Speciality, Large, Medium. All profit centers, US Division, Global, and Logistics. Date range: fiscal 2018 through 2021 data. Monthly reporting granularity.
 
 **Stefan Richter** *[12:55]*: What's the total data volume we're looking at?
 
 **Marcus Weber** *[12:58]*: The FinancialTransactions table has about 167,000 records total. Breaking that down, roughly 64,756 are actual transactions and about 102,380 are budget entries. Budget tends to have more records because we budget at a more granular level in certain areas, more line items, more monthly breakdowns.
 
-**Julien Tremblay** *[13:20]*: That's a very manageable volume from a processing standpoint. No concerns there at all. And the date range, April 2018 through January 2021, is that right?
+**Danny Le** *[13:20]*: That's a very manageable volume from a processing standpoint. No concerns there at all. And the date range, April 2018 through January 2021, is that right?
 
 **Marcus Weber** *[13:30]*: That's correct. Fiscal year runs on a calendar year basis, so December 31 year-end. The data starts in April 2018 because that's when we completed the SAP migration from the legacy system. Prior to that... the data is in the old system and it's, um...
 
@@ -124,7 +124,7 @@
 
 **Amelie Theoret** *[14:00]*: Noted. April 2018 is our starting boundary. Good. Now let's be explicit about what's out of scope for Phase 1 so there are no surprises. Danny?
 
-**Julien Tremblay** *[14:12]*: So the following are deferred to Phase 2 or beyond. First, forecast and rolling forecast versions. If you have forward-looking data beyond the annual budget, that's not Phase 1. Second, operational data, so supply chain, inventory, manufacturing data. Third, HR and workforce analytics. Fourth, detailed tax reporting. And fifth, real-time data feeds. For Phase 1, batch processing with scheduled refreshes is the approach. We're not doing live streaming from SAP.
+**Danny Le** *[14:12]*: So the following are deferred to Phase 2 or beyond. First, forecast and rolling forecast versions. If you have forward-looking data beyond the annual budget, that's not Phase 1. Second, operational data, so supply chain, inventory, manufacturing data. Third, HR and workforce analytics. Fourth, detailed tax reporting. And fifth, real-time data feeds. For Phase 1, batch processing with scheduled refreshes is the approach. We're not doing live streaming from SAP.
 
 **Stefan Richter** *[14:45]*: The forecast piece, I want to flag that for the record. We're in the middle of implementing a rolling forecast methodology here. It's not in SAP yet, we're still designing the process, but when it's ready, I'll want it integrated. So it's definitely a Phase 2 priority.
 
@@ -132,7 +132,7 @@
 
 **Karen Liu** *[15:10]*: Two things. First, I'd eventually love to get operational data in there. When I'm looking at a COGS variance, it would be incredible to drill down into what's actually happening at the manufacturing level, raw material cost fluctuations, labor costs, production yields. Right now I just see the aggregated COGS number and have to go hunting separately for the why.
 
-**Julien Tremblay** *[15:32]*: Yeah, that would require integrating SAP CO or MM modules, which is a whole different data domain. Good Phase 2 candidate.
+**Danny Le** *[15:32]*: Yeah, that would require integrating SAP CO or MM modules, which is a whole different data domain. Good Phase 2 candidate.
 
 **Karen Liu** *[15:40]*: And second, I know this is way down the road, but the ability to do some predictive analytics would be amazing. Like, based on current trends, where are we likely to end the year relative to budget. But that's probably Phase 3 territory.
 
@@ -144,15 +144,15 @@
 
 **Marcus Weber** *[16:45]*: Alright, so as Danny mentioned, we have a classic star schema design in SAP FI. The central fact table is FinancialTransactions. Each record represents a financial posting, essentially a line item. It carries foreign keys to the dimension tables, plus the amount value, the posting date, and a version indicator that tells you whether it's an actual or budget entry.
 
-**Julien Tremblay** *[17:08]*: How many dimension tables in total?
+**Danny Le** *[17:08]*: How many dimension tables in total?
 
 **Marcus Weber** *[17:11]*: Eighteen. They're organized into four logical groups. First group is GL Accounts, that's five tables: the main GL accounts dimension, the account types table, a text table for multilingual descriptions, an account hierarchy table, and a hierarchy node table. Second group is Customers, also five tables following the same pattern. Third is Products, five tables. And then Profit Centers, which has three tables, the main dimension, a text table, and a hierarchy table.
 
-**Julien Tremblay** *[17:45]*: Let me make sure I understand the pattern. For each dimension group, you have the base dimension, a type or category table, a text table for language-specific descriptions, and then hierarchy tables?
+**Danny Le** *[17:45]*: Let me make sure I understand the pattern. For each dimension group, you have the base dimension, a type or category table, a text table for language-specific descriptions, and then hierarchy tables?
 
 **Marcus Weber** *[17:58]*: Exactly. Well, the type table is only on GL Accounts. But otherwise yes, that's the pattern. It's standard SAP convention. The text tables are particularly important because they store descriptions in multiple languages. We maintain English and German, so language codes EN and DE. To get the English description of, say, a GL account, you join the text table filtering on language equals EN.
 
-**Julien Tremblay** *[18:22]*: The German descriptions, is that because of Stefan's heritage, or...?
+**Danny Le** *[18:22]*: The German descriptions, is that because of Stefan's heritage, or...?
 
 **Stefan Richter** *[18:26]*: Ha, I wish I could take credit. No, it's because our original parent company was German. When we set up SAP, we maintained both languages. Honestly, we could probably drop the German at this point, but Marcus won't let me.
 
@@ -160,13 +160,13 @@
 
 **Amelie Theoret** *[18:47]*: For our purposes, we'll default to English descriptions in the analytics layer, but it's good to know both are there.
 
-**Julien Tremblay** *[18:55]*: Tell me about the hierarchy structures. Those seem central to the reporting requirements Karen described.
+**Danny Le** *[18:55]*: Tell me about the hierarchy structures. Those seem central to the reporting requirements Karen described.
 
 **Marcus Weber** *[19:02]*: They are, yes. We have hierarchies on three dimensions. The GL account hierarchy is probably the most important one, it defines the P&L structure. Individual GL accounts roll up through hierarchy nodes into subtotals like Gross Revenue, COGS, Operating Expenses, and ultimately to EBIT and Net Income. So when Karen says she wants to see the P&L, the structure of that P&L is defined by the GL account hierarchy.
 
 **Karen Liu** *[19:30]*: Right, and the hierarchy nodes I mentioned earlier, FPA1/022 for Gross Revenue, FPA1/020 for COGS, those are nodes in that hierarchy. They're not actual GL accounts themselves, they're the roll-up points.
 
-**Julien Tremblay** *[19:45]*: Got it. So a leaf account posts actual transactions, and the hierarchy tells us how to aggregate.
+**Danny Le** *[19:45]*: Got it. So a leaf account posts actual transactions, and the hierarchy tells us how to aggregate.
 
 **Marcus Weber** *[19:52]*: Precisely. Then we have the product hierarchy, which goes from individual products, we have thirty-five of those, up through eight product categories and into the four product lines. And the profit center hierarchy, which organizes profit centers under the US Division, then by product line and size designation.
 
@@ -174,35 +174,35 @@
 
 **Marcus Weber** *[20:16]*: Sure. It's a bit technical. Under the US Division, profit centers are coded as US10 followed by the product line and size. So US10_PCC1L means US Division, Cruise Cycles, Large. PCC1 is Cruise, PCC2 is Mountain, PCC3 is Racing, PCC4 is Youth. And then L for Large, S for Small. So if you see US10_PCC2S, that's Mountain bikes, Small. Under the Global group, ZG, there are three profit centers. And under Logistics, Z_LOG, there are four.
 
-**Julien Tremblay** *[20:52]*: And the Large versus Small designation, what does that represent operationally?
+**Danny Le** *[20:52]*: And the Large versus Small designation, what does that represent operationally?
 
 **Marcus Weber** *[20:57]*: It's a volume classification. Large profit centers handle the higher-volume product variants, small handles the niche or specialty products. It determines cost allocation and resource planning.
 
 **Stefan Richter** *[21:08]*: It also roughly correlates to our customer segmentation. The large profit centers tend to service our Large tier customers, your Skymarts and Bigmarts, while the small ones are more aligned with the Speciality tier, your TechCycles and independent shops.
 
-**Julien Tremblay** *[21:25]*: That's useful context. Okay, let me ask about some SAP-specific conventions because these are going to matter a lot in the data transformation layer. The hash symbol?
+**Danny Le** *[21:25]*: That's useful context. Okay, let me ask about some SAP-specific conventions because these are going to matter a lot in the data transformation layer. The hash symbol?
 
 **Marcus Weber** *[21:36]*: Ah, the infamous hash. So in SAP, when a dimension value is unassigned, it's represented by the hash character, the number sign. If a financial transaction doesn't have a customer assigned, the customer foreign key will just be the hash symbol. You'll see this across all dimensions. And this is important, you can't just filter those out because some of those unassigned records are perfectly legitimate financial postings. Things like overhead allocations, intercompany entries, they may not have a customer or product dimension, but the financial values are real and need to appear in the consolidated view.
 
-**Julien Tremblay** *[22:12]*: Makes sense. We'll handle that in the Transform layer, probably map it to a descriptive label like "Unassigned" or "Not Applicable" in the reporting.
+**Danny Le** *[22:12]*: Makes sense. We'll handle that in the Transform layer, probably map it to a descriptive label like "Unassigned" or "Not Applicable" in the reporting.
 
 **Marcus Weber** *[22:22]*: Right. Now, the amount values, this is one that always trips people up. The amounts are stored as VARCHAR, not as a numeric type.
 
-**Julien Tremblay** *[22:32]*: Stored as strings?
+**Danny Le** *[22:32]*: Stored as strings?
 
 **Marcus Weber** *[22:34]*: Yes. And they use European comma formatting. So what you'd write as twelve thousand seven hundred thirty-four dollars and four cents would be stored as the string "12734,04" with a comma as the decimal separator. No thousands separator.
 
-**Julien Tremblay** *[22:50]*: So we need a VARCHAR-to-numeric conversion with a comma-to-period swap. Classic ETL challenge but straightforward.
+**Danny Le** *[22:50]*: So we need a VARCHAR-to-numeric conversion with a comma-to-period swap. Classic ETL challenge but straightforward.
 
 **Marcus Weber** *[22:58]*: Exactly. And dates, the date field is stored as BIGINT in YYYYMMDD format. So today, September 15, 2025, would be the integer 20250915.
 
-**Julien Tremblay** *[23:10]*: We've seen this pattern in other SAP implementations. It's consistent, which is what matters.
+**Danny Le** *[23:10]*: We've seen this pattern in other SAP implementations. It's consistent, which is what matters.
 
 **Marcus Weber** *[23:16]*: That's what I always say. It may not be intuitive, but at least it's consistent. I'll take consistent over intuitive any day.
 
 **Amelie Theoret** *[23:24]*: Danny, any other data questions before we move on?
 
-**Julien Tremblay** *[23:28]*: Actually yes, a few more. Marcus, can you give us the dimension cardinalities? Number of customers, products, that kind of thing. Helps me think about the data model.
+**Danny Le** *[23:28]*: Actually yes, a few more. Marcus, can you give us the dimension cardinalities? Number of customers, products, that kind of thing. Helps me think about the data model.
 
 **Marcus Weber** *[23:38]*: Sure. Fifty-three customers total, spread across the US and Canada. Karen mentioned the big ones, Skymart Corp, Bigmart, CostClub in the Large tier. Then you've got specialty retailers like TechCycle in the Speciality tier. And the medium accounts, regional chains, that sort of thing.
 
@@ -210,7 +210,7 @@
 
 **Stefan Richter** *[24:25]*: It's the question, really. And it has direct implications for our go-to-market strategy. If the specialty channel is significantly more profitable per unit, maybe we should be investing more there instead of chasing the next big box contract.
 
-**Julien Tremblay** *[24:40]*: That's a great analysis to build into the profitability dashboards. What about products?
+**Danny Le** *[24:40]*: That's a great analysis to build into the profitability dashboards. What about products?
 
 **Marcus Weber** *[24:46]*: Thirty-five products across eight categories, rolling up into the four product lines. Cruise bikes, Mountain bikes, Racing bikes, Youth bikes. Within each line you've got various models and variants. And we've got the e-bike models too, E101 and E102, which have been gaining a lot of traction.
 
@@ -218,11 +218,11 @@
 
 **Karen Liu** *[25:14]*: Something like that, yeah. The challenge is, I can tell you the top-line revenue because I've manually tracked it, but I can't give you a proper margin analysis because the cost allocation across profit centers isn't something I can easily extract from my spreadsheets. That's exactly the kind of thing this project should solve.
 
-**Julien Tremblay** *[25:32]*: It will. GL accounts, Marcus, twenty-one total and five account types, right?
+**Danny Le** *[25:32]*: It will. GL accounts, Marcus, twenty-one total and five account types, right?
 
 **Marcus Weber** *[25:38]*: Correct. Twenty-one GL accounts, five account types. It's compact. The hierarchy does all the heavy lifting for the P&L structure. You don't need hundreds of accounts when you have a well-designed hierarchy.
 
-**Julien Tremblay** *[25:52]*: Agreed, and from a modeling perspective, that's actually ideal. Smaller, well-structured dimensions mean cleaner joins, faster queries, and the hierarchy gives you all the analytical flexibility without bloating the base tables.
+**Danny Le** *[25:52]*: Agreed, and from a modeling perspective, that's actually ideal. Smaller, well-structured dimensions mean cleaner joins, faster queries, and the hierarchy gives you all the analytical flexibility without bloating the base tables.
 
 **Amelie Theoret** *[26:05]*: Okay, I want to make sure we have enough time for methodology and next steps. Let me walk through how we typically approach a project like this, and then we'll talk timeline and governance. Sound good?
 
@@ -230,11 +230,11 @@
 
 **Amelie Theoret** *[26:24]*: So at Maxa, we follow a six-phase methodology: Discover, Design, Build, Test, Deploy, and Support. We're currently at the very beginning of the Discover phase. This kick-off is step one. The Discover phase is where we deeply understand your business, your data structures, your reporting requirements, your pain points. After today, we'll do a much more detailed FP&A workshop where we go deep on the financial structures, the exact P&L format you want, the calculations, the specific metrics.
 
-**Julien Tremblay** *[26:58]*: On the data architecture side, we use what we call the UBDM approach. It has three layers. First is the Raw layer, sometimes called R, where we land the data exactly as it comes out of SAP. No transformations, no cleaning, just a faithful copy. Second is the Transform layer, T, where we do all the data engineering work: converting those VARCHAR amounts to proper numeric types, parsing the BIGINT dates into real date fields, resolving the hash symbols, building out proper relational structures, standardizing naming conventions. And third is the Metrics layer, where we define the business calculations, KPIs, and measures that actually appear in dashboards.
+**Danny Le** *[26:58]*: On the data architecture side, we use what we call the UBDM approach. It has three layers. First is the Raw layer, sometimes called R, where we land the data exactly as it comes out of SAP. No transformations, no cleaning, just a faithful copy. Second is the Transform layer, T, where we do all the data engineering work: converting those VARCHAR amounts to proper numeric types, parsing the BIGINT dates into real date fields, resolving the hash symbols, building out proper relational structures, standardizing naming conventions. And third is the Metrics layer, where we define the business calculations, KPIs, and measures that actually appear in dashboards.
 
 **Karen Liu** *[27:42]*: So the Transform layer is where you'd handle the European comma formatting?
 
-**Julien Tremblay** *[27:46]*: Exactly. By the time data reaches the Metrics layer, everything is clean, properly typed, and ready for analysis. You should never have to think about SAP conventions when you're looking at a dashboard.
+**Danny Le** *[27:46]*: Exactly. By the time data reaches the Metrics layer, everything is clean, properly typed, and ready for analysis. You should never have to think about SAP conventions when you're looking at a dashboard.
 
 **Karen Liu** *[27:58]*: That sounds... honestly, that sounds like a dream. Right now I spend a non-trivial amount of time every month just dealing with data formatting issues in my spreadsheets. Commas versus periods, date parsing errors, missing dimension labels.
 
@@ -264,7 +264,7 @@
 
 **Stefan Richter** *[30:08]*: That's excellent. The sooner we get something tangible in front of the business unit leaders, the sooner we build buy-in. There's a certain amount of skepticism internally about analytics projects. People have been burned before by promises that took forever to deliver. If we can show something real in six weeks, that changes the conversation entirely.
 
-**Julien Tremblay** *[30:28]*: And just to set expectations properly, that first prototype will be the core P&L with basic drill-down by profit center and product line. We'll iterate from there. Budget versus actual comparison, cash flow analysis, the more advanced profitability views, those come in subsequent iterations within the Build phase.
+**Danny Le** *[30:28]*: And just to set expectations properly, that first prototype will be the core P&L with basic drill-down by profit center and product line. We'll iterate from there. Budget versus actual comparison, cash flow analysis, the more advanced profitability views, those come in subsequent iterations within the Build phase.
 
 **Karen Liu** *[30:48]*: Can I give input on the design? Like, I have very specific ideas about how I want the P&L laid out, what the column headers should be, how variances should be displayed.
 
@@ -290,15 +290,15 @@
 
 **Marcus Weber** *[32:55]*: Yes, and I can loop in my database admin if needed for anything infrastructure-related. For the initial data extract, I should be able to get you the full dataset within a week. The star schema is well-defined, the exports are pretty straightforward.
 
-**Julien Tremblay** *[33:10]*: That would be great. I'd want the full FinancialTransactions fact table plus all eighteen dimension tables. That gives us everything we need to start the detailed data profiling and analysis.
+**Danny Le** *[33:10]*: That would be great. I'd want the full FinancialTransactions fact table plus all eighteen dimension tables. That gives us everything we need to start the detailed data profiling and analysis.
 
 **Marcus Weber** *[33:22]*: What format?
 
-**Julien Tremblay** *[33:24]*: CSV is fine for the initial load.
+**Danny Le** *[33:24]*: CSV is fine for the initial load.
 
 **Marcus Weber** *[33:27]*: Easy enough. I'll aim for Monday or Tuesday of next week.
 
-**Julien Tremblay** *[33:32]*: Perfect.
+**Danny Le** *[33:32]*: Perfect.
 
 **Amelie Theoret** *[33:35]*: Okay, let me lay out the concrete next steps so everyone's clear. First, Marcus will prepare the data extract, targeting early next week. Second, I'll send out meeting notes from today by end of day tomorrow. Third, I'll also send a workshop preparation guide for the next session. Fourth, we need to schedule the next meeting, which will be a deeper Business Review and FP&A Workshop, the real deep-dive into the financial structure.
 
@@ -308,7 +308,7 @@
 
 **Karen Liu** *[34:30]*: I can definitely do that. I'll put together a package. Fair warning, the Excel file is a bit of a monster.
 
-**Julien Tremblay** *[34:38]*: Monsters are fine. We've seen worse, I promise.
+**Danny Le** *[34:38]*: Monsters are fine. We've seen worse, I promise.
 
 **Karen Liu** *[34:42]*: Don't be so sure.
 
@@ -316,7 +316,7 @@
 
 **Amelie Theoret** *[34:47]*: If Marcus gets us the data early next week, Danny can do a preliminary analysis over a few days, and then we hold the FP&A deep-dive the following Wednesday. So tentatively September 24th.
 
-**Julien Tremblay** *[35:00]*: That works for me. Having the data beforehand means I can come in with informed questions rather than spending half the workshop just understanding the table structures.
+**Danny Le** *[35:00]*: That works for me. Having the data beforehand means I can come in with informed questions rather than spending half the workshop just understanding the table structures.
 
 **Marcus Weber** *[35:12]*: I'll make Monday my target for the extract.
 
@@ -332,11 +332,11 @@
 
 **Marcus Weber** *[36:02]*: I can do that. I'll include it with the data extract. I'll also document the SAP naming conventions, the hash symbol handling, the VARCHAR amounts, the BIGINT dates, so your team doesn't have to rediscover all of that.
 
-**Julien Tremblay** *[36:16]*: That would be incredibly helpful. Thank you, Marcus.
+**Danny Le** *[36:16]*: That would be incredibly helpful. Thank you, Marcus.
 
 **Karen Liu** *[36:20]*: Oh, I just remembered something I wanted to mention. When we're building out the P&L analytics, we have some derived metrics that are really important to us. Gross margin as a percentage, contribution margin by product line, COGS as a percentage of revenue compared across customer segments. Right now I calculate all of those manually in Excel, but having them built directly into the analytics platform would be a huge improvement.
 
-**Julien Tremblay** *[36:46]*: Absolutely, those are textbook Metrics layer calculations. We'll capture the full list and the exact formulas during the FP&A workshop and make sure they're built into the data model.
+**Danny Le** *[36:46]*: Absolutely, those are textbook Metrics layer calculations. We'll capture the full list and the exact formulas during the FP&A workshop and make sure they're built into the data model.
 
 **Karen Liu** *[36:58]*: The formulas aren't complicated individually. It's the fact that I have to apply them across thirty-seven profit centers, four product lines, three customer segments, and two versions every single month. That's what kills us.
 
@@ -350,7 +350,7 @@
 
 **Marcus Weber** *[38:34]*: I'm looking forward to getting you the data. The SAP system has excellent data, it really does. The problem has always been accessibility. It's like we've built this beautiful library and then locked all the doors.
 
-**Julien Tremblay** *[38:48]*: Well, we're here to open those doors.
+**Danny Le** *[38:48]*: Well, we're here to open those doors.
 
 **Stefan Richter** *[38:52]*: Not just open them, build windows too. I don't just want access, I want visibility. I want to be able to see across the entire business from my desk.
 
@@ -362,7 +362,7 @@
 
 **Marcus Weber** *[39:20]*: Thanks, I'll get started on those extracts this afternoon. Talk soon.
 
-**Julien Tremblay** *[39:25]*: Thanks all. Looking forward to seeing the data, Marcus. Don't hesitate to reach out if you have any questions about what to include.
+**Danny Le** *[39:25]*: Thanks all. Looking forward to seeing the data, Marcus. Don't hesitate to reach out if you have any questions about what to include.
 
 **Marcus Weber** *[39:32]*: Will do.
 

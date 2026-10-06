@@ -13,7 +13,7 @@
           "type": "procedural"
         },
         {
-          "text": "Flags FiscalCalendar as a missing entity referenced by FinancialTransaction's fiscal_calendar_id FK",
+          "text": "Flags GLAccountHierarchyNode as a missing entity needed for the leaf-account-only rule and P&L hierarchy traversal (Gross Margin, EBIT, Net Income)",
           "type": "correctness"
         },
         {
@@ -25,7 +25,7 @@
           "type": "format"
         },
         {
-          "text": "Reads the specialized-instructions.md Implementation Checklist for all 5 entities",
+          "text": "Reads the specialized-instructions.md \"Pre-Flight Checklist\" items for all 5 entities",
           "type": "procedural"
         },
         {
@@ -33,11 +33,7 @@
           "type": "correctness"
         },
         {
-          "text": "Identifies Q018, Q019, Q020 as partially covered due to missing FiscalCalendar",
-          "type": "correctness"
-        },
-        {
-          "text": "Surfaces relevant known gaps (Gap 1: 37th profit center, Gap 9: P&L hierarchy completeness)",
+          "text": "Surfaces relevant open items (G001: undocumented cost allocation methodology across profit centers; FQ-07: customer and profit center hierarchy node IDs)",
           "type": "completeness"
         },
         {
@@ -54,7 +50,7 @@
       "id": 2,
       "name": "audit-single-entity",
       "prompt": "I just built a staging model for FinancialTransaction. Check it against the Maxa spec — did I handle everything?",
-      "expected_output": "A focused audit on FinancialTransaction covering its 7 business rules, 9 Implementation Checklist items, and relevant numerical examples",
+      "expected_output": "A focused audit on FinancialTransaction covering its 7 business rules, 8 Pre-Flight Checklist items, and relevant numerical examples",
       "assertions": [
         {
           "text": "Reads entities/financial-transaction.md for business rules",
@@ -65,11 +61,11 @@
           "type": "completeness"
         },
         {
-          "text": "Runs all 9 Implementation Checklist items from specialized-instructions.md for FinancialTransaction",
+          "text": "Runs all 8 Pre-Flight Checklist items from specialized-instructions.md for FinancialTransaction",
           "type": "completeness"
         },
         {
-          "text": "Reads the checklist from the section headed \"Pre-Flight Checklist\" (older Maxa spec heading) and titles the report section \"Implementation Checklist\"",
+          "text": "Reads the checklist from the section headed \"Pre-Flight Checklist\" and titles the report section \"Implementation Checklist\"",
           "type": "procedural"
         },
         {
@@ -77,20 +73,19 @@
           "type": "correctness"
         },
         {
-          "text": "Flags missing FiscalCalendar as a structural gap (FK reference from FinancialTransaction)",
+          "text": "Flags that the leaf-account-only rule needs GLAccountHierarchyNode.is_leaf, which the user has not built",
           "type": "correctness"
         }
       ]
     },
     {
       "id": 3,
-      "name": "audit-single-entity-maxa-spec-yaml",
-      "fixture_path": "tests/fixtures/sap-finance-maxa-spec",
+      "name": "audit-single-entity-customer",
       "prompt": "I just built a staging model for Customer. Check it against the Maxa spec — did I handle everything?",
-      "expected_output": "A focused audit on Customer covering its business rules, 4 Implementation Checklist items, and relevant numerical examples",
+      "expected_output": "A focused audit on Customer covering its business rules, 5 Pre-Flight Checklist items, and relevant numerical examples",
       "assertions": [
         {
-          "text": "Locates the Maxa spec through maxa-spec.yaml without the user specifying the path",
+          "text": "Locates the Maxa spec through project.yaml declaring bundle_format_version without the user specifying the path",
           "type": "procedural"
         },
         {
@@ -98,7 +93,7 @@
           "type": "procedural"
         },
         {
-          "text": "Runs all 4 Customer items from the \"Implementation Checklist\" section of specialized-instructions.md",
+          "text": "Runs all 5 Customer items from the \"Pre-Flight Checklist\" section of specialized-instructions.md",
           "type": "completeness"
         },
         {

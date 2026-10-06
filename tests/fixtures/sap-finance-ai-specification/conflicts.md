@@ -1,31 +1,14 @@
 ---
 type: conflicts
 title: Conflicts
-description: Aggregated unresolved contradictions across all source themes — no conflicts were identified between VeloGroup's two source transcripts.
+description: Consolidated log of unresolved contradictions detected across all theme content during business discovery extraction.
 confidence: high
-timestamp: 2026-07-15T16:00:00Z
-tags: [ai_specification, conflicts]
-sources:
-  - VeloGroup-Maxa-FPA-Workshop
-  - VeloGroup-Maxa-Project-Kick-Off
+tags: [bundle_metadata, conflicts]
+timestamp: "2026-10-05T20:33:03Z"
 ---
 
 # Conflicts
 
-## Summary
+No unresolved conflicts were identified across any theme, entity, or reference content in this AI specification. All 10 source themes report zero conflicts in their respective extraction passes.
 
-**No conflicts were identified** across the two source transcripts (FP&A Workshop and Project Kick-Off). All 10 stage-1 themes report empty `conflicts` arrays. VeloGroup stakeholders (Stefan Richter, Karen Liu, Marcus Weber, Priya Sharma) were consistent in their statements across both sessions.
-
-This is a positive finding for specification quality — the business knowledge base has no internal contradictions that would require disambiguation by a consuming copilot.
-
-## Potential Ambiguities (Non-Contradictions)
-
-While no direct contradictions exist, the following statements involve imprecision or hedging that consumers should be aware of:
-
-1. **US/Canada revenue split** — Karen Liu states "roughly 85-15, but I'd need to pull the exact number" (Workshop, 02:28). The ~85-15 split is approximate, not confirmed.
-
-2. **E-bike revenue growth** — Stefan Richter says "around 40%" and Karen hedges with "Something like that, yeah" (Kick-Off, 25:05/25:14). The ~40% figure has medium confidence.
-
-3. **37th profit center** — Marcus states 37 profit centers, but only 36 are documented by structure (28 US + 3 Global + 4 Logistics + 1 Year-end = 36). The 37th is unaccounted for. See [Known Gaps](/known-gaps.md).
-
-These are documented as follow-up questions in relevant theme and entity files, not as conflicts.
+One near-conflict was identified and resolved through annotation rather than escalation: Karen Liu stated COGS transaction volume as ~126,390 (see [GLAccount](/entities/gl-account.md)), while a derived calculation from the stated 75% COGS share of 167,136 total transactions yields ~125,352 (see [Numerical Examples](/reference/numerical-examples.md), N008). Both values are preserved with their respective sources — this is treated as an approximation discrepancy between two stakeholder statements, not a substantive contradiction, since both speakers used hedging language ("about," "roughly").

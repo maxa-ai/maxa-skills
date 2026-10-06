@@ -36,7 +36,7 @@ claude --plugin-dir ./plugins/<plugin-name>
 
 ## Evaluations
 
-Each skill includes `evals/evals.json` with test cases and assertions, compatible with Anthropic's [skill-creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) plugin. Test fixtures (Maxa specs, schemas) are in `tests/fixtures/`: `sap-finance-ai-specification` uses the older format (`project.yaml`, Pre-Flight Checklist) and `sap-finance-maxa-spec` the current one (`maxa-spec.yaml`, Implementation Checklist). An eval's own `fixture_path` overrides the one at the top of `evals.json`.
+Each skill includes `evals/evals.json` with test cases and assertions, compatible with Anthropic's [skill-creator](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) plugin. Test fixtures (Maxa specs, schemas) are in `tests/fixtures/`. `sap-finance-ai-specification` is a copy of the Maxa spec the toolbox produces for the sap-finance dataset (`datasets/sap-finance/processing-artifacts/project/ai-specification/` in `maxa-ai-data-studio-toolbox`), plus `NOTICE.md`; refresh it from there when the toolbox output changes.
 
 To run evaluations:
 
