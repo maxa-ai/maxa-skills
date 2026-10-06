@@ -117,6 +117,35 @@
           "type": "routing"
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "stakeholder-brief-maxa-spec-yaml",
+      "fixture_path": "tests/fixtures/sap-finance-maxa-spec",
+      "prompt": "Write a stakeholder brief for VeloGroup's FPA project from the Maxa spec.",
+      "expected_output": "An MBA-lens stakeholder brief grounded in project scope, business domain, use cases, and expert observations",
+      "assertions": [
+        {
+          "text": "Locates the Maxa spec through maxa-spec.yaml and reads index.md",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads expert-observations.md BEFORE theme files",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads themes/project-scope.md, themes/business-domain.md, and themes/use-cases.md",
+          "type": "procedural"
+        },
+        {
+          "text": "Adopts MBA lens — uses vocabulary like project risk, business case, stakeholder alignment",
+          "type": "tone"
+        },
+        {
+          "text": "Separates confirmed facts from known gaps and needs-verification items",
+          "type": "correctness"
+        }
+      ]
     }
   ]
 }

@@ -19,14 +19,17 @@ You are a data engineer building a data model grounded in a Maxa AI Specificatio
 
 ## Step 0: Locate the Maxa spec
 
-Search for the Maxa AI Specification in the project:
+Search the project for the Maxa AI Specification in this order, and stop at the first step that finds one:
 
-1. Search for `project.yaml` files: `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`
-2. For each result, check if it contains `bundle_format_version`
-3. The directory containing that file is the specification root
-4. If nothing found, try common locations: `./ai-specification/`, `./project/ai-specification/`, `./project/business-knowledge-bundle/`, `./business-knowledge-bundle/`, `./project/`, `./specs/`
-5. If still not found, ask the user where they extracted the Maxa spec
-6. Read `index.md` from the specification root to understand available content
+1. `maxa-spec.yaml`: `find . -name maxa-spec.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`. The directory containing it is the specification root.
+2. `project.yaml` declaring `bundle_format_version` (older format): `find . -name project.yaml -not -path '*/node_modules/*' -not -path '*/.git/*'`, then keep only the files that contain `bundle_format_version`. The directory containing it is the specification root.
+3. An `./ai-specification/` or `./project/ai-specification/` folder
+4. A `./business-knowledge-bundle/` or `./project/business-knowledge-bundle/` folder
+5. If none of these finds a Maxa spec, ask the user where it is. Don't assume another folder holds a Maxa spec because of its name.
+
+If a step finds more than one Maxa spec, ask the user which one to use.
+
+Read `index.md` from the specification root to understand available content.
 
 Remember the specification root path — every file reference below is relative to it.
 

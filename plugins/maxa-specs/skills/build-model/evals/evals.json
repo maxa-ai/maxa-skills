@@ -105,6 +105,35 @@
           "type": "correctness"
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "maxa-spec-yaml-discovery",
+      "fixture_path": "tests/fixtures/sap-finance-maxa-spec",
+      "prompt": "I have a Maxa spec somewhere in this project. Help me build a staging model for the Product entity.",
+      "expected_output": "Discovers the Maxa spec through maxa-spec.yaml, reads the Product entity file and its Implementation Checklist items, produces a staging model with correct attributes and data conventions",
+      "assertions": [
+        {
+          "text": "Locates the Maxa spec through maxa-spec.yaml without the user specifying the path",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads entities/product.md for attribute definitions",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads the Product items from the \"Implementation Checklist\" section of specialized-instructions.md",
+          "type": "procedural"
+        },
+        {
+          "text": "Applies LANGUAGE='EN' filter for multilingual text tables",
+          "type": "business_rule"
+        },
+        {
+          "text": "Retains hash (#) in product_category_id as a legitimate member",
+          "type": "business_rule"
+        }
+      ]
     }
   ]
 }

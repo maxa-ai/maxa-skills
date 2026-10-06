@@ -81,6 +81,35 @@
           "type": "correctness"
         }
       ]
+    },
+    {
+      "id": 3,
+      "name": "audit-single-entity-maxa-spec-yaml",
+      "fixture_path": "tests/fixtures/sap-finance-maxa-spec",
+      "prompt": "I just built a staging model for Customer. Check it against the Maxa spec — did I handle everything?",
+      "expected_output": "A focused audit on Customer covering its business rules, 4 Implementation Checklist items, and relevant numerical examples",
+      "assertions": [
+        {
+          "text": "Locates the Maxa spec through maxa-spec.yaml without the user specifying the path",
+          "type": "procedural"
+        },
+        {
+          "text": "Reads entities/customer.md for business rules",
+          "type": "procedural"
+        },
+        {
+          "text": "Runs all 4 Customer items from the \"Implementation Checklist\" section of specialized-instructions.md",
+          "type": "completeness"
+        },
+        {
+          "text": "Report section for checklist results is titled \"Implementation Checklist\"",
+          "type": "format"
+        },
+        {
+          "text": "Validates the customer count baseline (53 total — 44 US, 9 Canada)",
+          "type": "correctness"
+        }
+      ]
     }
   ]
 }
