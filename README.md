@@ -12,7 +12,7 @@ Public Claude Code plugin marketplace for the Maxa organization.
 
 ```bash
 # Add the marketplace (once)
-/plugin marketplace add maxa-ai/maxa-copilot-skills
+/plugin marketplace add maxa-ai/maxa-skills
 
 # Install a plugin
 /plugin install maxa-spec@maxa-skills
