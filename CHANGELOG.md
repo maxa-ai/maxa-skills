@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/maxa-ai/maxa-skills/compare/v1.3.0...v1.3.1) (2026-10-13)
+
+
+### Bug Fixes
+
+* **maxa-spec:** test evals against the Maxa spec 2.0.0 output ([56598c3](https://github.com/maxa-ai/maxa-skills/commit/56598c3b50d858fbd4e58fc24c23f7b3489b5d7d))
+
 ## [1.3.0](https://github.com/maxa-ai/maxa-copilot-skills/compare/v1.2.0...v1.3.0) (2026-10-06)
 
 
