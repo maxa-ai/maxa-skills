@@ -1,3 +1,3 @@
 name: VeloGroup International FP&A
 description: Business discovery AI specification for VeloGroup International's FP&A analytics platform, covering SAP FI financial transactions, P&L hierarchy, master data, KPIs, and validated business questions for a B2B cycling manufacturer/distributor.
-bundle_format_version: "1.0.0"
+maxa_spec_format_version: "2.0.0"
