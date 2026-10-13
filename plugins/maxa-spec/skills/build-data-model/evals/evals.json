@@ -114,10 +114,10 @@
       "id": 4,
       "name": "product-staging-model-project-yaml-discovery",
       "prompt": "I have a Maxa spec somewhere in this project. Help me build a staging model for the Product entity.",
-      "expected_output": "Discovers the Maxa spec through project.yaml, reads the Product entity file and its Pre-Flight Checklist items, produces a staging model with correct attributes and data conventions",
+      "expected_output": "Discovers the Maxa spec through maxa-spec.yaml, reads the Product entity file and its Implementation Checklist items, produces a staging model with correct attributes and data conventions",
       "assertions": [
         {
-          "text": "Locates the Maxa spec through project.yaml declaring bundle_format_version without the user specifying the path",
+          "text": "Locates the Maxa spec through maxa-spec.yaml without the user specifying the path",
           "type": "procedural"
         },
         {
@@ -125,7 +125,7 @@
           "type": "procedural"
         },
         {
-          "text": "Reads the Product items from the \"Pre-Flight Checklist\" section of specialized-instructions.md",
+          "text": "Reads the Product items from the \"Implementation Checklist\" section of specialized-instructions.md",
           "type": "procedural"
         },
         {

@@ -1,7 +1,7 @@
 ---
 type: specialized_instructions
 title: Specialized Instructions
-description: Project-specific computation recipes, pre-flight checklists, and entity relationship patterns for VeloGroup International's FP&A analytics platform, synthesized from the AI specification bundle content.
+description: Project-specific computation recipes, implementation checklists, and entity relationship patterns for VeloGroup International's FP&A analytics platform, synthesized from the Maxa AI Specification content.
 confidence: high
 timestamp: "2026-10-06T02:00:00Z"
 tags: [specialized_instructions]
@@ -63,7 +63,7 @@ This file contains project-specific procedural knowledge for VeloGroup Internati
 
 ### Operating Expense Total (FKPI-07)
 
-1. OpEx Total = SUM of all Operating Expense accounts: Building Expense (FPA1/028, FPA1/029, under node FPA1/024) + Employee Expense (FPA1/032–035, under node FPA1/026) + Other Operating Expense (FPA1/027; specific leaf accounts not documented in this bundle).
+1. OpEx Total = SUM of all Operating Expense accounts: Building Expense (FPA1/028, FPA1/029, under node FPA1/024) + Employee Expense (FPA1/032–035, under node FPA1/026) + Other Operating Expense (FPA1/027; specific leaf accounts not documented in this Maxa spec).
 2. Calculated node FPA1/018.
 3. Dimensional grain: profit center only. `customer_id` and `product_id` [MUST] be the unassigned sentinel (`#`) for these postings, because Operating Expense is an organizational cost, not customer- or product-specific — [MUST NOT] be filtered out as invalid.
 
@@ -131,7 +131,7 @@ This file contains project-specific procedural knowledge for VeloGroup Internati
 
 1. Customer Concentration % = SUM(Gross Revenue for top 10 customers) / SUM(Gross Revenue total) × 100.
 2. Requires a join: `FinancialTransaction` → `Customer`.
-3. Target: no single customer [SHOULD NOT] exceed 15% of total revenue — the CFO's stated concentration threshold (source type: `stakeholder_statement` — unverified approximation; the current value for any specific customer against this threshold was not stated in this bundle and [MUST NOT] be inferred).
+3. Target: no single customer [SHOULD NOT] exceed 15% of total revenue — the CFO's stated concentration threshold (source type: `stakeholder_statement` — unverified approximation; the current value for any specific customer against this threshold was not stated in this Maxa spec and [MUST NOT] be inferred).
 4. Note: transaction share does not equal revenue share — Speciality shops have higher transaction counts but may have lower per-transaction value than Large customers who place fewer, larger orders.
 
 **Grounded in:** [Operational KPIs](/kpis/operational-kpis.md) > KPI-03, [Business Questions](/reference/business-questions.md) > Q016.
@@ -154,7 +154,7 @@ This file contains project-specific procedural knowledge for VeloGroup Internati
 
 ---
 
-## Pre-Flight Checklist
+## Implementation Checklist
 
 ### FinancialTransaction
 
@@ -184,7 +184,7 @@ This file contains project-specific procedural knowledge for VeloGroup Internati
 
 - [ ] Null `parent_customer_hierarchy_node_id` expected and valid for the root node — not treated as a data-quality defect (grounded in: [CustomerHierarchyNode](/entities/customer-hierarchy-node.md) > Standard Attributes > `parent_customer_hierarchy_node_id`)
 - [ ] `is_leaf` used to distinguish individual customer placements from type/geography grouping nodes before aggregation (grounded in: [CustomerHierarchyNode](/entities/customer-hierarchy-node.md) > Standard Attributes > `is_leaf`)
-- [ ] Detailed parent-child node identifiers for the 56-row hierarchy are not fully documented in this bundle (confidence: medium) — do not infer specific node IDs beyond type (Speciality/Large/Medium) and geography (US/Canada) groupings (grounded in: [CustomerHierarchyNode](/entities/customer-hierarchy-node.md) > Supported Questions > Known gap)
+- [ ] Detailed parent-child node identifiers for the 56-row hierarchy are not fully documented in this Maxa spec (confidence: medium) — do not infer specific node IDs beyond type (Speciality/Large/Medium) and geography (US/Canada) groupings (grounded in: [CustomerHierarchyNode](/entities/customer-hierarchy-node.md) > Supported Questions > Known gap)
 
 ### Division
 

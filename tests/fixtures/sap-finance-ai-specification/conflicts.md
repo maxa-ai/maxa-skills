@@ -3,7 +3,7 @@ type: conflicts
 title: Conflicts
 description: Consolidated log of unresolved contradictions detected across all theme content during business discovery extraction.
 confidence: high
-tags: [bundle_metadata, conflicts]
+tags: [maxa_spec_metadata, conflicts]
 timestamp: "2026-10-05T20:33:03Z"
 ---
 

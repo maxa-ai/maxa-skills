@@ -3,7 +3,7 @@ type: follow_up_questions
 title: Follow-Up Questions
 description: Critical missing information identified across theme extraction, aggregated with impact and current-state context for follow-up with VeloGroup stakeholders.
 confidence: high
-tags: [bundle_metadata, follow_up_questions]
+tags: [maxa_spec_metadata, follow_up_questions]
 timestamp: "2026-10-05T20:33:03Z"
 ---
 

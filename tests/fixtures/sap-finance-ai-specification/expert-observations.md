@@ -3,7 +3,7 @@ type: expert_observations
 title: Expert Observations
 description: Cross-cutting domain expert interpretations of what is non-obvious, high-priority, or risk-bearing about VeloGroup's FP&A data and business context, preserved from the discovery assessment.
 confidence: high
-tags: [bundle_metadata, expert_observations]
+tags: [maxa_spec_metadata, expert_observations]
 timestamp: "2026-10-05T20:33:03Z"
 ---
 

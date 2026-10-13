@@ -3,7 +3,7 @@ type: known_gaps
 title: Known Gaps
 description: Two chapter-level gaps identified across VeloGroup's FP&A analytics discovery - cost allocation methodology and balance sheet/cash flow account structures.
 confidence: high
-tags: [bundle_metadata, known_gaps]
+tags: [maxa_spec_metadata, known_gaps]
 timestamp: "2026-10-05T20:33:03Z"
 ---
 
