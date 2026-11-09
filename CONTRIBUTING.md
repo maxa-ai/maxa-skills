@@ -16,7 +16,9 @@ Each plugin lives under `plugins/<plugin-name>/` with its own manifest and skill
 ```
 plugins/<plugin-name>/
 ├── .claude-plugin/
-│   └── plugin.json      # name, version, description
+│   ├── plugin.json      # name, version, description, license
+│   └── icon.png         # Square PNG icon (released plugins)
+├── README.md            # What it does, how to use it, what data it sends (released plugins)
 └── skills/
     └── <skill-name>/
         ├── SKILL.md      # Skill prompt and metadata
@@ -27,7 +29,8 @@ plugins/<plugin-name>/
 ### Requirements
 
 - **plugin.json** must include `name`, `version`, and `description`
-- **SKILL.md** must include `name` and `description` in YAML frontmatter
+- **SKILL.md** must include `name` and `description` in YAML frontmatter, and can use only `license`, `compatibility`, `metadata`, and `allowed-tools` in addition. Other fields break the skill outside Claude Code — see [skill-authoring.md](.claude/rules/skill-authoring.md)
+- Released plugins must pass Anthropic's directory checks (`claude plugin validate --strict --profile directory`): a `README.md` in the plugin folder, a `license` in `plugin.json`, and a square PNG icon at `.claude-plugin/icon.png` (512 to 2048 px)
 - New plugins must be registered in `.claude-plugin/marketplace.json`
 - To keep a plugin in `plugins/` without releasing it, leave it out of `marketplace.json` and add it to `UNRELEASED_PLUGINS` in `.github/scripts/validate-plugins.sh`
 - **Bump the version** in `plugin.json` on every change — updates won't propagate without it
