@@ -5,7 +5,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
 PLUGINS_DIR="$REPO_ROOT/plugins"
 # Plugins kept in plugins/ but intentionally not registered in marketplace.json.
-# They skip the orphan and version-bump checks; schema validation still runs.
+# They skip the orphan, version-bump, and directory-profile checks; schema validation still runs.
 UNRELEASED_PLUGINS=(maxa-preflight)
 errors=0
 
@@ -95,10 +95,16 @@ if command -v claude >/dev/null 2>&1; then
     [ -d "$plugin_dir" ] || continue
     plugin_name="$(basename "$plugin_dir")"
 
-    if ! claude plugin validate "$plugin_dir" --strict 2>&1; then
-      fail "$plugin_name failed claude plugin validate --strict"
+    # Released plugins also get Anthropic's directory checks (README, license, icon).
+    validate_args=(--strict)
+    if ! is_unreleased "$plugin_name"; then
+      validate_args+=(--profile directory)
+    fi
+
+    if ! claude plugin validate "$plugin_dir" "${validate_args[@]}" 2>&1; then
+      fail "$plugin_name failed claude plugin validate ${validate_args[*]}"
     else
-      echo "OK: $plugin_name passes claude plugin validate --strict"
+      echo "OK: $plugin_name passes claude plugin validate ${validate_args[*]}"
     fi
   done
 else
