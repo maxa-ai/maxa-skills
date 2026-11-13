@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/maxa-ai/maxa-skills/compare/v1.3.1...v1.4.0) (2026-11-13)
+
+
+### Features
+
+* **maxa-spec:** prepare the plugin for Anthropic's directory ([3e12220](https://github.com/maxa-ai/maxa-skills/commit/3e12220a90b55ceef32bf72d4c9256a78c4a5065))
+
 ## [1.3.1](https://github.com/maxa-ai/maxa-skills/compare/v1.3.0...v1.3.1) (2026-10-13)
 
 
