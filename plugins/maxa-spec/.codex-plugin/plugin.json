@@ -1,0 +1,30 @@
+{
+  "name": "maxa-spec",
+  "version": "0.3.0",
+  "description": "Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis, so the model works from the business understanding Maxa extracted from stakeholder discovery.",
+  "author": {
+    "name": "Maxa"
+  },
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Maxa Spec",
+    "shortDescription": "Model data from your Maxa spec",
+    "longDescription": "Maxa Spec helps the model work from a Maxa AI Specification (Maxa spec) when you build data models, write SQL or dbt transforms, or write business documents. A Maxa spec holds the business understanding that Maxa extracts from stakeholder discovery: entities, business rules, KPIs, source-system conventions, and known gaps. The plugin's three skills tell the model which parts of the Maxa spec to read for each task. Build Data Model builds data models, SQL or dbt transforms, and KPI calculations that follow the spec's business rules. Check Data Model audits an existing model or set of transforms against those business rules and the spec's Implementation Checklist. Write Business Doc writes risk registers, gap analyses, stakeholder briefs, and other documents that keep confirmed facts apart from known gaps. The skills load only in projects that contain a Maxa spec, or when you mention one. The plugin contains only skill instructions. It has no connectors, servers, or scripts, and it sends no data to Maxa or to any other service.",
+    "developerName": "Maxa",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": [
+      "Build a star schema for the general ledger from the Maxa spec",
+      "Check my dbt models against the Maxa spec and list what is missing",
+      "Write a risk register for this project from the Maxa spec"
+    ],
+    "websiteURL": "https://maxa.ai/",
+    "supportURL": "https://maxa.ai/contact",
+    "privacyPolicyURL": "https://maxa.ai/privacy",
+    "termsOfServiceURL": "https://maxa.ai/terms",
+    "brandColor": "#2388FF",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/logo.png"
+  }
+}
