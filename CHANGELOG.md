@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/maxa-ai/maxa-skills/compare/v1.4.0...v1.5.0) (2026-11-17)
+
+
+### Features
+
+* **maxa-spec:** install the plugin in Codex and ChatGPT ([2f2b4ae](https://github.com/maxa-ai/maxa-skills/commit/2f2b4aefc8934f21fff999f9dc092dffcb26c572))
+
 ## [1.4.0](https://github.com/maxa-ai/maxa-skills/compare/v1.3.1...v1.4.0) (2026-11-13)
 
 
