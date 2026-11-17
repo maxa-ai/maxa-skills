@@ -111,7 +111,110 @@ else
   echo "SKIP: claude CLI not available (install with: npm install -g @anthropic-ai/claude-code)"
 fi
 
-# ── 5. Version bump enforcement ──
+# ── 5. Codex catalog and manifests ──
+#
+# Codex reads .agents/plugins/marketplace.json before the legacy .claude-plugin
+# catalog, and .codex-plugin/plugin.json before .claude-plugin/plugin.json.
+# Both catalogs list the same plugins. Both manifests share name, version and
+# description, so the version bump check in section 6 covers the Codex manifest.
+
+echo ""
+echo "── Validating Codex catalog and manifests ──"
+
+CODEX_MARKETPLACE="$REPO_ROOT/.agents/plugins/marketplace.json"
+
+if [ ! -f "$CODEX_MARKETPLACE" ]; then
+  fail ".agents/plugins/marketplace.json is missing"
+elif ! jq empty "$CODEX_MARKETPLACE" 2>/dev/null; then
+  fail ".agents/plugins/marketplace.json is not valid JSON"
+else
+  echo "OK: .agents/plugins/marketplace.json parses"
+
+  if [ "$(jq -r '.name // empty' "$CODEX_MARKETPLACE")" != "$(jq -r '.name // empty' "$MARKETPLACE")" ]; then
+    fail "the two marketplace catalogs have different names"
+  fi
+
+  missing=$(jq -r '.plugins[]
+    | select((.name // "") == "" or (.source.path // "") == "" or (.policy.installation // "") == ""
+             or (.policy.authentication // "") == "" or (.category // "") == "")
+    | .name // "<unnamed>"' "$CODEX_MARKETPLACE")
+  for name in $missing; do
+    fail "Codex catalog entry '$name' needs name, source.path, policy.installation, policy.authentication and category"
+  done
+
+  for source in $(jq -r '.plugins[].source.path // empty' "$CODEX_MARKETPLACE"); do
+    if [ ! -d "$REPO_ROOT/$source" ]; then
+      fail "Codex catalog source path does not exist: $source"
+    fi
+  done
+
+  claude_names=$(jq -r '.plugins[].name' "$MARKETPLACE" | sort)
+  codex_names=$(jq -r '.plugins[].name' "$CODEX_MARKETPLACE" | sort)
+  if [ "$claude_names" != "$codex_names" ]; then
+    fail "the Codex and Claude catalogs list different plugins (Claude: $(echo $claude_names), Codex: $(echo $codex_names))"
+  else
+    echo "OK: both catalogs list the same plugins"
+  fi
+fi
+
+for plugin_dir in "$PLUGINS_DIR"/*/; do
+  [ -d "$plugin_dir" ] || continue
+  plugin_name="$(basename "$plugin_dir")"
+  codex_json="$plugin_dir.codex-plugin/plugin.json"
+  claude_json="$plugin_dir.claude-plugin/plugin.json"
+
+  if [ ! -f "$codex_json" ]; then
+    if is_unreleased "$plugin_name"; then
+      echo "OK: $plugin_name is unreleased, no Codex manifest required"
+    else
+      fail "$plugin_name has no .codex-plugin/plugin.json"
+    fi
+    continue
+  fi
+
+  errors_before=$errors
+
+  if ! jq empty "$codex_json" 2>/dev/null; then
+    fail "$plugin_name: .codex-plugin/plugin.json is not valid JSON"
+    continue
+  fi
+
+  for field in name version description; do
+    if [ "$(jq -r ".$field // empty" "$codex_json")" != "$(jq -r ".$field // empty" "$claude_json")" ]; then
+      fail "$plugin_name: '$field' differs between .codex-plugin/plugin.json and .claude-plugin/plugin.json"
+    fi
+  done
+
+  # Listing limits from OpenAI's plugin submission docs.
+  problems=$(jq -r '
+    .interface as $i
+    | [ (["displayName","shortDescription","longDescription","developerName","logo","composerIcon"][]
+          | select(($i[.] // "") == "") | "interface.\(.) is required"),
+        (if ($i.capabilities | type) != "array" then "interface.capabilities must be an array" else empty end),
+        (if ($i.displayName // "" | length) > 30 then "interface.displayName is over 30 characters" else empty end),
+        (if ($i.shortDescription // "" | length) > 30 then "interface.shortDescription is over 30 characters" else empty end),
+        (if ($i.longDescription // "" | length) > 4000 then "interface.longDescription is over 4000 characters" else empty end),
+        (if ($i.developerName // "" | length) > 80 then "interface.developerName is over 80 characters" else empty end),
+        (if ($i.defaultPrompt // [] | length) > 3 then "interface.defaultPrompt has more than 3 prompts" else empty end),
+        (($i.defaultPrompt // [])[] | select(length > 128) | "interface.defaultPrompt over 128 characters: \(.)"),
+        (if ($i.brandColor // "#000000" | test("^#[0-9A-Fa-f]{6}$") | not) then "interface.brandColor must be #RRGGBB" else empty end)
+      ] | .[]' "$codex_json")
+  while IFS= read -r problem; do
+    [ -n "$problem" ] && fail "$plugin_name: $problem"
+  done <<< "$problems"
+
+  for icon in $(jq -r '.interface.logo // empty, .interface.composerIcon // empty' "$codex_json" | sort -u); do
+    if [ ! -f "$plugin_dir$icon" ]; then
+      fail "$plugin_name: icon file not found: $icon"
+    fi
+  done
+
+  if [ "$errors" -eq "$errors_before" ]; then
+    echo "OK: $plugin_name passes the Codex manifest checks"
+  fi
+done
+
+# ── 6. Version bump enforcement ──
 
 echo ""
 echo "── Checking version bumps ──"
