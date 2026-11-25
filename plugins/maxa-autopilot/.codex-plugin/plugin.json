@@ -1,0 +1,37 @@
+{
+  "name": "maxa-autopilot",
+  "version": "0.1.0",
+  "description": "Connect Claude Code and Codex to the Autopilot MCP server. Includes the OAuth client.",
+  "author": {
+    "name": "Maxa"
+  },
+  "license": "MIT",
+  "mcpServers": {
+    "autopilot": {
+      "type": "http",
+      "url": "https://app.autopilot.maxa.ai/api/mcp",
+      "oauth": {
+        "clientId": "uX7JqVc0hYHngnJ4vjaz845sFp3weKJL",
+        "callbackPort": 8765
+      }
+    }
+  },
+  "interface": {
+    "displayName": "Maxa Autopilot",
+    "shortDescription": "Connect to Maxa Autopilot",
+    "longDescription": "Maxa Autopilot connects Codex to the Autopilot MCP server. The plugin includes the OAuth client ID and the callback port, so you do not set them by hand. This plugin connects to the app environment at https://app.autopilot.maxa.ai. After you install it, run `codex mcp login autopilot` and sign in with your Maxa account in the browser. Then start a new Codex session to see the Autopilot tools. If you use another environment, such as partners or maxa-internal, do not install this plugin. Add a server block to ~/.codex/config.toml instead. The plugin README has the steps. When you use the Autopilot tools, Codex sends requests to your Autopilot server.",
+    "developerName": "Maxa",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "defaultPrompt": [
+      "Show me what the Autopilot tools can do"
+    ],
+    "websiteURL": "https://maxa.ai/",
+    "supportURL": "https://maxa.ai/contact",
+    "privacyPolicyURL": "https://maxa.ai/privacy",
+    "termsOfServiceURL": "https://maxa.ai/terms",
+    "brandColor": "#2388FF",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/logo.png"
+  }
+}

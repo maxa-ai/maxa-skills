@@ -1,6 +1,6 @@
 {
   "name": "maxa-autopilot",
-  "description": "Connect Claude Code to the Autopilot MCP server. Includes the OAuth client, and asks for the name of your Autopilot environment.",
+  "description": "Connect Claude Code and Codex to the Autopilot MCP server. Includes the OAuth client.",
   "version": "0.1.0",
   "author": {
     "name": "Maxa"
