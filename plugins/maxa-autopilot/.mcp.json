@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "autopilot": {
+      "type": "http",
+      "url": "https://${user_config.autopilot_instance}.autopilot.maxa.ai/api/mcp",
+      "oauth": {
+        "clientId": "uX7JqVc0hYHngnJ4vjaz845sFp3weKJL",
+        "callbackPort": 8765
+      }
+    }
+  }
+}

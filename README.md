@@ -7,8 +7,11 @@ Public plugin marketplace for the Maxa organization, for Claude Code, Codex and 
 | Plugin | Skills | Description |
 |--------|--------|-------------|
 | `maxa-spec` | `build-data-model`, `check-data-model`, `write-business-doc` | Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis |
+| `maxa-autopilot` | none (adds an MCP server) | Connect Claude Code to the Autopilot MCP server. Claude Code only |
 
 ## Installation
+
+The steps down to the Autopilot subsection install `maxa-spec`. For `maxa-autopilot`, see [Autopilot](#autopilot-claude-code-only).
 
 ```bash
 # Add the marketplace (once)
@@ -87,6 +90,20 @@ Plugins work only in the CLI. In the Studio IDE, Wizard reads skills from the db
 
 Skills copied this way have no `maxa-spec:` prefix: name one in your request (for example "Use check-data-model to audit fct_monthly_gross_margin"), or let Wizard pick it from your request. The copies don't update from this repository; copy them again for each new version. Each dbt project needs its own copy.
 
+### Autopilot (Claude Code only)
+
+The `maxa-autopilot` plugin adds the Autopilot MCP server to Claude Code. It does not work in Codex, Cortex Code, or dbt Wizard.
+
+```bash
+# Environment "app"
+claude plugin install maxa-autopilot --marketplace maxa-ai/maxa-skills
+
+# Environment "partners" or "maxa-internal"
+claude plugin install maxa-autopilot --marketplace maxa-ai/maxa-skills --config autopilot_instance=partners
+```
+
+Then restart Claude Code and sign in from `/mcp`. See [plugins/maxa-autopilot/README.md](plugins/maxa-autopilot/README.md).
+
 ## Usage
 
 Once installed, invoke skills with the plugin namespace:
@@ -130,6 +147,6 @@ Run the CI checks locally before pushing:
 ## Contributing
 
 1. Create or modify a plugin under `plugins/<plugin-name>/`
-2. Each plugin needs `.claude-plugin/plugin.json` (with `name` and `version`) and at least one `skills/<skill-name>/SKILL.md`
+2. Each plugin needs `.claude-plugin/plugin.json` (with `name` and `version`) and at least one `skills/<skill-name>/SKILL.md` or an MCP server (`.mcp.json`)
 3. Register new plugins in `.claude-plugin/marketplace.json`
 4. **Bump the version in `plugin.json` on every change** — updates won't propagate without it

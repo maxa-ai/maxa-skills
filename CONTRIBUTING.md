@@ -37,8 +37,9 @@ plugins/<plugin-name>/
 - Released plugins must pass Anthropic's directory checks (`claude plugin validate --strict --profile directory`): a `README.md` in the plugin folder, a `license` in `plugin.json`, and a square PNG icon at `.claude-plugin/icon.png` (512 to 2048 px)
 - Released plugins need `.codex-plugin/plugin.json` with the same `name`, `version` and `description` as `.claude-plugin/plugin.json`, plus an `interface` block with the OpenAI listing metadata. CI checks the shared fields and OpenAI's length limits
 - New plugins must be registered in `.claude-plugin/marketplace.json` and `.agents/plugins/marketplace.json`
+- Exception: a plugin that uses Claude Code-only features (for example `${user_config.*}` in `.mcp.json`) goes in `CLAUDE_ONLY_PLUGINS` in `.github/scripts/validate-plugins.sh`. It has no `.codex-plugin/` folder and no entry in `.agents/plugins/marketplace.json`. CI fails if it has either
 - To keep a plugin in `plugins/` without releasing it, leave it out of `marketplace.json` and add it to `UNRELEASED_PLUGINS` in `.github/scripts/validate-plugins.sh`
-- **Bump the version** in both `plugin.json` manifests on every change — updates won't propagate without it
+- **Bump the version** in both `plugin.json` manifests on every change (only `.claude-plugin/plugin.json` for a Claude-only plugin) — updates won't propagate without it
 
 ### Naming
 
