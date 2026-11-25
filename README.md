@@ -7,11 +7,11 @@ Public plugin marketplace for the Maxa organization, for Claude Code, Codex and 
 | Plugin | Skills | Description |
 |--------|--------|-------------|
 | `maxa-spec` | `build-data-model`, `check-data-model`, `write-business-doc` | Activate a Maxa AI Specification for data modeling, transform implementation, and business analysis |
-| `maxa-autopilot` | none (adds an MCP server) | Connect Claude Code to the Autopilot MCP server. Claude Code only |
+| `maxa-autopilot` | none (adds an MCP server) | Connect Claude Code and Codex to the Autopilot MCP server |
 
 ## Installation
 
-The steps down to the Autopilot subsection install `maxa-spec`. For `maxa-autopilot`, see [Autopilot](#autopilot-claude-code-only).
+The steps down to the Autopilot subsection install `maxa-spec`. For `maxa-autopilot`, see [Autopilot](#autopilot).
 
 ```bash
 # Add the marketplace (once)
@@ -90,9 +90,9 @@ Plugins work only in the CLI. In the Studio IDE, Wizard reads skills from the db
 
 Skills copied this way have no `maxa-spec:` prefix: name one in your request (for example "Use check-data-model to audit fct_monthly_gross_margin"), or let Wizard pick it from your request. The copies don't update from this repository; copy them again for each new version. Each dbt project needs its own copy.
 
-### Autopilot (Claude Code only)
+### Autopilot
 
-The `maxa-autopilot` plugin adds the Autopilot MCP server to Claude Code. It does not work in Codex, Cortex Code, or dbt Wizard.
+The `maxa-autopilot` plugin adds the Autopilot MCP server to Claude Code and Codex. It does not work in Cortex Code or dbt Wizard.
 
 ```bash
 # Environment "app"
@@ -102,7 +102,17 @@ claude plugin install maxa-autopilot --marketplace maxa-ai/maxa-skills
 claude plugin install maxa-autopilot --marketplace maxa-ai/maxa-skills --config autopilot_instance=partners
 ```
 
-Then restart Claude Code and sign in from `/mcp`. See [plugins/maxa-autopilot/README.md](plugins/maxa-autopilot/README.md).
+Then restart Claude Code and sign in from `/mcp`.
+
+In Codex, for `app`:
+
+```bash
+codex plugin marketplace add maxa-ai/maxa-skills
+codex plugin add maxa-autopilot@maxa-skills
+codex mcp login autopilot
+```
+
+For `partners` and `maxa-internal`, Codex needs a block in `~/.codex/config.toml` instead of the plugin. See [plugins/maxa-autopilot/README.md](plugins/maxa-autopilot/README.md).
 
 ## Usage
 
