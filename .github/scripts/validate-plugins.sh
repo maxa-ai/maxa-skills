@@ -7,6 +7,9 @@ PLUGINS_DIR="$REPO_ROOT/plugins"
 # Plugins kept in plugins/ but intentionally not registered in marketplace.json.
 # They skip the orphan, version-bump, and directory-profile checks; schema validation still runs.
 UNRELEASED_PLUGINS=(maxa-preflight)
+# Plugins that use Claude Code-only features (for example ${user_config.*} in .mcp.json).
+# They are in the Claude catalog only: no .codex-plugin/ folder and no Codex catalog entry.
+CLAUDE_ONLY_PLUGINS=(maxa-autopilot)
 errors=0
 
 fail() {
@@ -17,6 +20,14 @@ fail() {
 is_unreleased() {
   local name
   for name in "${UNRELEASED_PLUGINS[@]}"; do
+    [ "$name" = "$1" ] && return 0
+  done
+  return 1
+}
+
+is_claude_only() {
+  local name
+  for name in "${CLAUDE_ONLY_PLUGINS[@]}"; do
     [ "$name" = "$1" ] && return 0
   done
   return 1
@@ -115,7 +126,7 @@ fi
 #
 # Codex reads .agents/plugins/marketplace.json before the legacy .claude-plugin
 # catalog, and .codex-plugin/plugin.json before .claude-plugin/plugin.json.
-# Both catalogs list the same plugins. Both manifests share name, version and
+# Both catalogs list the same plugins, except the Claude-only plugins. Both manifests share name, version and
 # description, so the version bump check in section 6 covers the Codex manifest.
 
 echo ""
@@ -149,7 +160,15 @@ else
   done
 
   claude_names=$(jq -r '.plugins[].name' "$MARKETPLACE" | sort)
+  for name in "${CLAUDE_ONLY_PLUGINS[@]}"; do
+    claude_names=$(echo "$claude_names" | grep -vx "$name" || true)
+  done
   codex_names=$(jq -r '.plugins[].name' "$CODEX_MARKETPLACE" | sort)
+  for name in "${CLAUDE_ONLY_PLUGINS[@]}"; do
+    if echo "$codex_names" | grep -qx "$name"; then
+      fail "$name is Claude Code only but is listed in the Codex catalog"
+    fi
+  done
   if [ "$claude_names" != "$codex_names" ]; then
     fail "the Codex and Claude catalogs list different plugins (Claude: $(echo $claude_names), Codex: $(echo $codex_names))"
   else
@@ -162,6 +181,15 @@ for plugin_dir in "$PLUGINS_DIR"/*/; do
   plugin_name="$(basename "$plugin_dir")"
   codex_json="$plugin_dir.codex-plugin/plugin.json"
   claude_json="$plugin_dir.claude-plugin/plugin.json"
+
+  if is_claude_only "$plugin_name"; then
+    if [ -e "$plugin_dir.codex-plugin" ]; then
+      fail "$plugin_name is Claude Code only but has a .codex-plugin/ folder"
+    else
+      echo "OK: $plugin_name is Claude Code only, no Codex manifest required"
+    fi
+    continue
+  fi
 
   if [ ! -f "$codex_json" ]; then
     if is_unreleased "$plugin_name"; then

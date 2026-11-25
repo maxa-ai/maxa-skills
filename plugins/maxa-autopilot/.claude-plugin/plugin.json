@@ -1,0 +1,19 @@
+{
+  "name": "maxa-autopilot",
+  "description": "Connect Claude Code to the Autopilot MCP server. Includes the OAuth client, and asks for the name of your Autopilot environment.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Maxa"
+  },
+  "license": "MIT",
+  "keywords": ["mcp", "autopilot", "maxa"],
+  "privacyPolicyUrl": "https://maxa.ai/privacy",
+  "userConfig": {
+    "autopilot_instance": {
+      "type": "string",
+      "title": "Autopilot",
+      "description": "The name before .autopilot.maxa.ai in your Autopilot address.",
+      "default": "app"
+    }
+  }
+}

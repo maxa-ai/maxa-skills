@@ -11,6 +11,14 @@
       "author": {
         "name": "Maxa"
       }
+    },
+    {
+      "name": "maxa-autopilot",
+      "source": "./plugins/maxa-autopilot",
+      "description": "Connect Claude Code to the Autopilot MCP server. Includes the OAuth client, and asks for the name of your Autopilot environment.",
+      "author": {
+        "name": "Maxa"
+      }
     }
   ]
 }
