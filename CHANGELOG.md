@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/maxa-ai/maxa-skills/compare/v1.5.0...v1.6.0) (2026-11-26)
+
+
+### Features
+
+* **maxa-autopilot:** add Codex support ([6383fb4](https://github.com/maxa-ai/maxa-skills/commit/6383fb4d92aa1ae094afdc156db8057bd6d67182))
+* **maxa-autopilot:** add plugin that connects Claude Code to Autopilot ([b1ae3b9](https://github.com/maxa-ai/maxa-skills/commit/b1ae3b9d5e6291e7bc7cdda843b398ba36a4628a))
+
 ## [1.5.0](https://github.com/maxa-ai/maxa-skills/compare/v1.4.0...v1.5.0) (2026-11-17)
 
 
